@@ -89,7 +89,8 @@
   /* ---- 푸터 ---- */
   document.getElementById('foot').innerHTML =
     M.team + ' · ' + M.org + ' — ' + UI.pad(s.no) + '회차' + (tbd ? '' : ' ' + s.topic) + ' 진행안<br>' +
-    (tbd ? '주제 확정 대기 중' : UI.slotCount(s) + '인 · ' + UI.totalMinutes(s) + '분 · 인당 ' + D.minutesPerSlot + '분');
+    (tbd ? '주제 확정 대기 중' : UI.slotCount(s) + '인 · ' + UI.totalMinutes(s) + '분 · 인당 ' + D.minutesPerSlot + '분') +
+    (M.siblingSite ? '<br>' + UI.siblingLink('flink') : '');
 })();
 </script>
 

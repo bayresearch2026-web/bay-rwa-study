@@ -82,7 +82,8 @@
   /* ---- 푸터 ---- */
   document.getElementById('foot').innerHTML =
     M.team + ' · ' + M.org + '<br>' +
-    S.sessions.length + '회차 · 회차당 ' + D.memberCount + '인 · ' + D.totalMinutes + '분';
+    S.sessions.length + '회차 · 회차당 ' + D.memberCount + '인 · ' + D.totalMinutes + '분' +
+    (M.siblingSite ? '<br>' + UI.siblingLink('flink') : '');
 
   document.title = M.siteTitle;
 })();

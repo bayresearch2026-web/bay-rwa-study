@@ -37,7 +37,15 @@ window.STUDY = {
     heroRest: 'Study Archive',
     heroSub: 'Blockchain at Yonsei 리서치팀 · Xangle RWA Series 완독 9회차',
     // 노션 공용 페이지를 쓰면 여기에 링크. 비워두면 홈에서 버튼이 숨겨집니다.
-    notionUrl: ''
+    notionUrl: '',
+
+    // 같은 팀의 다른 사이트. 상단 네비와 푸터에 바로가기가 생깁니다.
+    // 비워두거나 null로 두면 링크가 숨겨집니다.
+    siblingSite: {
+      label: '뉴스트래킹',
+      desc: 'Blockchain Weekly Brief',
+      url: 'https://bay-research-2026-2.vercel.app/'
+    }
   },
 
   /* ---- 모든 회차에 공통으로 적용되는 운영 원칙 ------------------------- */

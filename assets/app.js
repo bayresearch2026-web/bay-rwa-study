@@ -76,6 +76,15 @@
    *  pill  우측 배지 텍스트 (없으면 숨김)
    *  back  true면 "전체 회차" 돌아가기 링크 표시
    */
+  /** 같은 팀의 다른 사이트로 가는 바로가기. meta.siblingSite가 없으면 빈 문자열 */
+  function siblingLink(cls) {
+    var sib = S.meta.siblingSite;
+    if (!sib || !sib.url) return '';
+
+    return '<a class="' + cls + '" href="' + sib.url + '" target="_blank" rel="noopener">' +
+      sib.label + '<span class="go">&#8599;</span></a>';
+  }
+
   function nav(opt) {
     opt = opt || {};
     var right = '';
@@ -87,7 +96,8 @@
         '<a class="home" href="index.html">' +
           '<img src="assets/logo.png" alt="BAY">' +
           '<div class="brand"><b>' + S.meta.team + '</b><span>' + S.meta.org + '</span></div>' +
-        '</a>' + right +
+        '</a>' +
+        siblingLink('xlink') + right +
       '</div></div>';
   }
 
@@ -250,6 +260,7 @@
     label: label,
     fmtDate: fmtDate,
     nextSession: nextSession,
+    siblingLink: siblingLink,
     sessionUrl: sessionUrl,
     slotCount: slotCount,
     totalMinutes: totalMinutes,
