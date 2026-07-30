@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "headers": [
+    {
+      "comment": "이미지·파비콘은 내용이 바뀔 일이 없으므로 길게 캐시",
+      "source": "/assets/:file(.*\\.(png|ico|jpg|jpeg|svg|webp))",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, immutable" }
+      ]
+    },
+    {
+      "comment": "CSS·JS·데이터는 파일명에 해시가 없어 매 요청 재검증(ETag 304). 배포 즉시 반영됨",
+      "source": "/(assets|data)/:file(.*\\.(css|js))",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
+}

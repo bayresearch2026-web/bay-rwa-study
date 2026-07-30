@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<title>BAY 리서치팀 · RWA 스터디</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="nav"></div>
+<div id="hero"></div>
+<div class="wrap" id="main"></div>
+<footer id="foot"></footer>
+
+<script src="data/sessions.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  var S = window.STUDY, D = S.defaults, M = S.meta;
+
+  /* ---- ?s=N 으로 회차 선택 (없거나 잘못되면 1회차) ---- */
+  var no = new URLSearchParams(location.search).get('s');
+  var s  = UI.find(no) || S.sessions[0];
+  var tbd = s.status === 'tbd';
+
+  document.title = UI.pad(s.no) + '회차 · ' + s.topic + ' — ' + M.siteTitle;
+  document.getElementById('nav').innerHTML = UI.nav({ back: true, pill: s.topic });
+
+  /* ---- 히어로 ---- */
+  var cta = s.source
+    ? '<a class="cta" href="' + s.source.url + '" target="_blank" rel="noopener">원문 아티클 읽기' +
+        '<span class="u">' + s.source.short + '</span><span class="go">&#8599;</span></a>'
+    : '';
+
+  var d = UI.fmtDate(s.date);
+
+  var stats = tbd
+    ? '<div class="stat"><b>' + D.memberCount + '</b><span>명 (예정)</span></div>' +
+      '<div class="stat"><b>' + D.totalMinutes + '</b><span>분 (예정)</span></div>' +
+      (d ? '<div class="stat"><b>' + d.short + '</b><span>' + d.dow + '요일 진행</span></div>' : '')
+    : '<div class="stat"><b>' + UI.slotCount(s) + '</b><span>명</span></div>' +
+      '<div class="stat"><b>' + UI.totalMinutes(s) + '</b><span>분 · ' + s.no + '회차</span></div>' +
+      '<div class="stat"><b>' + D.minutesPerSlot + '</b><span>분 인당</span></div>' +
+      (d ? '<div class="stat"><b>' + d.short + '</b><span>' + d.dow + '요일 진행</span></div>' : '');
+
+  document.getElementById('hero').innerHTML =
+    '<div class="hero-wrap"><div class="hero">' +
+      '<div class="hero-l">' +
+        '<span class="eyebrow">SESSION ' + UI.pad(s.no) + '</span>' +
+        '<h1><span class="ac">' + s.title.accent + '</span> ' + s.title.rest + '</h1>' +
+        '<p class="hero-sub">' + (s.source ? s.source.label : '주제 미정 · 확정되면 업데이트됩니다') + '</p>' +
+        cta +
+        '<div class="stats">' + stats + '</div>' +
+      '</div>' +
+      '<div class="hero-r"><img src="assets/hero.png" alt=""></div>' +
+    '</div></div>';
+
+  /* ---- 본문 ---- */
+  var body;
+
+  if (tbd) {
+    body = UI.section('01', '진행안', '아직 준비 전입니다',
+      '<div class="card"><div class="empty">' +
+        '<b>' + UI.pad(s.no) + '회차는 주제 확정 대기 중입니다</b>' +
+        '주제와 원문 아티클이 정해지면 담당 배분과 시간표가 여기에 표시됩니다.' +
+        '<small>사전 준비와 진행 방식은 아래 공통 규칙을 따릅니다.</small>' +
+      '</div></div>'
+    );
+  } else {
+    body = UI.section('01', '담당 배분', '목차 기준 ' + UI.slotCount(s) + '등분',
+      UI.assignTable(s));
+  }
+
+  body += UI.section('02', '사전 준비', '세션 전날까지 · 전 회차 공통',
+    UI.prepTable());
+
+  if (!tbd) {
+    body += UI.section('03', '진행표 · ' + UI.totalMinutes(s) + '분', D.flowNote,
+      UI.flowTable(s));
+    body += UI.section('04', '진행 기록', '세션 이후 채워집니다',
+      UI.recordList(s));
+  }
+
+  document.getElementById('main').innerHTML = body + UI.pager(s);
+
+  /* ---- 푸터 ---- */
+  document.getElementById('foot').innerHTML =
+    M.team + ' · ' + M.org + ' — ' + UI.pad(s.no) + '회차' + (tbd ? '' : ' ' + s.topic) + ' 진행안<br>' +
+    (tbd ? '주제 확정 대기 중' : UI.slotCount(s) + '인 · ' + UI.totalMinutes(s) + '분 · 인당 ' + D.minutesPerSlot + '분');
+})();
+</script>
+
+</body>
+</html>
