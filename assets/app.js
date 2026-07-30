@@ -126,8 +126,9 @@
   function assignTable(s) {
     if (!s.assign || !s.assign.length) return null;
 
-    var rows = s.assign.map(function (a) {
+    var rows = s.assign.map(function (a, i) {
       return '<tr>' +
+        '<td><span class="part">Part ' + (i + 1) + '</span></td>' +
         '<td><span class="who">' + a.who + '</span></td>' +
         '<td>' + partsHTML(a.parts) + '</td>' +
         '<td>' + (a.focus || '') + '</td>' +
@@ -135,7 +136,8 @@
     }).join('');
 
     return '<div class="card"><div class="tblwrap"><table>' +
-      '<thead><tr><th style="width:88px">담당</th><th style="width:340px">읽을 범위</th><th>공유 시 중점</th></tr></thead>' +
+      '<thead><tr><th style="width:74px">파트</th><th style="width:84px">담당</th>' +
+      '<th style="width:320px">읽을 범위</th><th>공유 시 중점</th></tr></thead>' +
       '<tbody>' + rows + '</tbody>' +
     '</table></div></div>';
   }
@@ -174,6 +176,7 @@
     var rows = s.assign.map(function (a, i) {
       var time = pad(i * m) + '&ndash;' + pad((i + 1) * m);
       return '<tr>' +
+        '<td><span class="part">Part ' + (i + 1) + '</span></td>' +
         '<td class="t">' + time + '</td>' +
         '<td><span class="who">' + a.who + '</span></td>' +
         '<td>' + partsHTML(a.parts) + '</td>' +
@@ -181,7 +184,8 @@
     }).join('');
 
     return '<div class="card">' + stepsBar() + '<div class="tblwrap"><table>' +
-      '<thead><tr><th style="width:100px">시간</th><th style="width:96px">담당</th><th>담당 범위</th></tr></thead>' +
+      '<thead><tr><th style="width:74px">파트</th><th style="width:92px">시간</th>' +
+      '<th style="width:84px">담당</th><th>담당 범위</th></tr></thead>' +
       '<tbody>' + rows + '</tbody>' +
     '</table></div></div>';
   }
