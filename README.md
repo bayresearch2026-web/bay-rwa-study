@@ -31,8 +31,10 @@ data/sessions.js    ★ 모든 회차 내용. 수정은 여기만 하면 됨
 assets/style.css    전 페이지 공용 스타일
 assets/app.js       공용 렌더링 로직
 assets/hero.png     히어로 일러스트 / logo.png / favicon.ico
-vercel.json         정적 캐시 헤더
 ```
+
+캐시 설정 파일(`vercel.json`)은 두지 않습니다. Vercel이 정적 파일에 기본으로
+`must-revalidate` + ETag를 적용해서, push하면 스터디원 화면에 바로 반영됩니다.
 
 ## 로컬에서 보기
 
