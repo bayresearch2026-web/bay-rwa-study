@@ -146,9 +146,11 @@
 
   function prepTable() {
     var rows = D.prep.map(function (p) {
-      var what = p.list
+      // list와 what은 택일, note는 둘 중 어느 쪽에도 붙을 수 있음
+      var body = p.list
         ? '<ul class="do">' + p.list.map(function (i) { return '<li>' + i + '</li>'; }).join('') + '</ul>'
-        : p.what + (p.note ? '<br><small>' + p.note + '</small>' : '');
+        : p.what;
+      var what = body + (p.note ? '<small class="nt">' + p.note + '</small>' : '');
 
       return '<tr><td class="t">' + p.when + '</td><td>' + p.who + '</td><td>' + what + '</td></tr>';
     }).join('');

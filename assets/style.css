@@ -128,6 +128,7 @@ td{color:var(--ink-2);}
 td b{color:var(--ink);font-weight:700;}
 td.t{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);font-size:13.4px;}
 small{color:var(--ink-4);font-size:12.2px;}
+small.nt{display:block;margin-top:7px;line-height:1.5;}
 
 .who{
   display:inline-block;white-space:nowrap;
