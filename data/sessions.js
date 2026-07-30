@@ -32,8 +32,9 @@ window.STUDY = {
     team: 'BAY 리서치팀',
     org: 'Blockchain at Yonsei · RWA 스터디',
     siteTitle: 'BAY 리서치팀 · RWA 스터디',
-    heroAccent: 'RWA',
-    heroRest: '스터디 아카이브',
+    eyebrow: 'BAY RESEARCH TEAM',   // 홈 히어로 제목 위 작은 글씨
+    heroAccent: 'RWA',              // 파란 글씨
+    heroRest: 'Study Archive',
     heroSub: 'Blockchain at Yonsei 리서치팀 · Xangle RWA Series 완독 9회차',
     // 노션 공용 페이지를 쓰면 여기에 링크. 비워두면 홈에서 버튼이 숨겨집니다.
     notionUrl: ''
