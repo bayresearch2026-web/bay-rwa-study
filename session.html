@@ -70,8 +70,14 @@
       '</div></div>'
     );
   } else {
-    body = UI.section('01', '담당 배분', '목차 기준 ' + UI.slotCount(s) + '등분',
-      UI.assignTable(s));
+    var exNote = (s.extra && s.extra.length)
+      ? '<div class="note">표 아래 회색 줄은 <b>발표자를 두지 않는 구간</b>입니다. ' +
+        '목차는 빠짐없이 다뤄지며, 발표 순서(Part 1~' + UI.slotCount(s) + ')에만 들어가지 않습니다.</div>'
+      : '';
+
+    body = UI.section('01', '담당 배분',
+      '발표 ' + UI.slotCount(s) + '파트' + (exNote ? ' + 별도 구간' : ''),
+      UI.assignTable(s) + exNote);
   }
 
   body += UI.section('02', '사전 준비', '세션 전날까지 · 전 회차 공통',

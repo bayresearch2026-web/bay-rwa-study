@@ -152,6 +152,15 @@ small.nt{display:block;margin-top:7px;line-height:1.5;}
   font-size:11.5px;font-weight:800;padding:4px 10px;letter-spacing:.01em;
 }
 
+/* 발표자를 두지 않는 구간 — 발표 순서와 구분되게 무채색으로 */
+.part.alt{background:var(--line-2);color:var(--ink-3);}
+.who.none{background:var(--line-2);color:var(--ink-3);}
+tbody tr.ex{background:#fcfcfd;}
+tbody tr.ex td{color:var(--ink-3);}
+tbody tr.ex .sec{color:var(--ink-2);font-weight:500;}
+tbody tr.ex .sec > b{color:var(--ink-4);}
+tbody tr.ex.first td{border-top:1px solid var(--line);}
+
 .sec{margin:0 0 8px;color:var(--ink);font-size:14.6px;font-weight:600;line-height:1.5;}
 .sec:last-child{margin-bottom:0;}
 .sec > b{

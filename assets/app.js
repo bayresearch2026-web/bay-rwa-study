@@ -145,6 +145,16 @@
       '</tr>';
     }).join('');
 
+    // 발표자를 두지 않는 구간 — 표 아래쪽에 흐리게 덧붙임 (진행표에는 안 들어감)
+    rows += (s.extra || []).map(function (e, i) {
+      return '<tr class="ex' + (i === 0 ? ' first' : '') + '">' +
+        '<td><span class="part alt">' + e.tag + '</span></td>' +
+        '<td><span class="who none">' + e.who + '</span></td>' +
+        '<td>' + partsHTML(e.parts) + '</td>' +
+        '<td>' + (e.focus || '') + '</td>' +
+      '</tr>';
+    }).join('');
+
     return '<div class="card"><div class="tblwrap"><table>' +
       '<thead><tr><th style="width:74px">파트</th><th style="width:84px">담당</th>' +
       '<th style="width:320px">읽을 범위</th><th>공유 시 중점</th></tr></thead>' +
