@@ -59,6 +59,15 @@
     '<div class="stat"><b>' + D.totalMinutes + '</b><span>분 · 회차당</span></div>' +
     '<div class="stat"><b>' + ready + '</b><span>회차 진행안 확정</span></div>';
 
+  /* ---- 공통 규칙을 따르지 않는 회차 안내 ---- */
+  var except = S.sessions.filter(UI.isCustom);
+  var exceptList = except.map(function (x) { return x.no + '회차'; }).join(' · ');
+  var exceptDesc = except.length ? exceptList + '는 예외' : '';
+  var exceptNote = except.length
+    ? '<div class="note"><b>' + exceptList + '는 진행 방식이 다릅니다.</b> ' +
+      '아래는 나머지 회차에 적용되는 공통 규칙이며, 해당 회차 페이지에서 그 회차의 방식을 확인하세요.</div>'
+    : '';
+
   /* ---- 본문 ---- */
   document.getElementById('main').innerHTML =
     UI.section('01', '회차', '카드를 누르면 회차별 진행안으로 이동합니다',
@@ -67,8 +76,8 @@
       '<b>진행 기록</b>에 발표 정리본·질문 답변·참고 자료가 쌓입니다.</div>'
     ) +
 
-    UI.section('02', '사전 준비', '모든 회차 공통 · 세션 전날까지',
-      UI.prepTable()
+    UI.section('02', '사전 준비', '세션 전날까지' + (exceptDesc ? ' · ' + exceptDesc : ''),
+      UI.prepTable() + exceptNote
     ) +
 
     UI.section('03', '진행 방식', D.flowNote,
@@ -76,7 +85,7 @@
       '<div class="empty" style="text-align:left;padding:18px">' +
         '담당자 ' + D.memberCount + '명이 각 ' + D.minutesPerSlot + '분씩, 총 ' + D.totalMinutes + '분. ' +
         '회차별 시간표는 각 회차 페이지에서 확인하세요.' +
-      '</div></div>'
+      '</div></div>' + exceptNote
     );
 
   /* ---- 푸터 ---- */

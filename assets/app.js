@@ -51,7 +51,19 @@
     return (s.assign && s.assign.length) ? s.assign.length : D.memberCount;
   }
 
-  function totalMinutes(s) { return slotCount(s) * D.minutesPerSlot; }
+  /* 회차별 운영 규칙 덮어쓰기 — 회차에 값이 있으면 그것을, 없으면 defaults를 씁니다.
+     (1회차처럼 진행 방식이 다른 회차를 위해) */
+  function slotMinutes(s) { return (s && s.minutesPerSlot) || D.minutesPerSlot; }
+  function stepsOf(s)     { return (s && s.steps)          || D.steps; }
+  function prepOf(s)      { return (s && s.prep)           || D.prep; }
+  function flowNoteOf(s)  { return (s && s.flowNote)       || D.flowNote; }
+
+  /** 이 회차가 공통 규칙과 다른 방식으로 진행되는지 */
+  function isCustom(s) {
+    return !!(s && (s.steps || s.prep || s.minutesPerSlot || s.flowNote));
+  }
+
+  function totalMinutes(s) { return slotCount(s) * slotMinutes(s); }
 
   /** 회차 제목: "01 · 컴플라이언스" */
   function label(s) { return pad(s.no) + '회차 · ' + s.topic; }
@@ -164,8 +176,8 @@
 
   /* ---- 섹션: 사전 준비 (모든 회차 공통) -------------------------------- */
 
-  function prepTable() {
-    var rows = D.prep.map(function (p) {
+  function prepTable(s) {
+    var rows = prepOf(s).map(function (p) {
       // list와 what은 택일, note는 둘 중 어느 쪽에도 붙을 수 있음
       var body = p.list
         ? '<ul class="do">' + p.list.map(function (i) { return '<li>' + i + '</li>'; }).join('') + '</ul>'
@@ -183,18 +195,18 @@
 
   /* ---- 섹션: 진행표 (담당 배분에서 자동 생성) --------------------------- */
 
-  function stepsBar() {
-    var chips = D.steps.map(function (st) {
+  function stepsBar(s) {
+    var chips = stepsOf(s).map(function (st) {
       return '<span class="st"><i>' + st.n + '</i>' + st.t + '<em>' + st.d + '</em></span>';
     }).join('<span class="ar">&rsaquo;</span>');
 
-    return '<div class="steps"><span class="lb">각 순서 ' + D.minutesPerSlot + '분 구성</span>' + chips + '</div>';
+    return '<div class="steps"><span class="lb">각 순서 ' + slotMinutes(s) + '분 구성</span>' + chips + '</div>';
   }
 
   function flowTable(s) {
     if (!s.assign || !s.assign.length) return null;
 
-    var m = D.minutesPerSlot;
+    var m = slotMinutes(s);
     var rows = s.assign.map(function (a, i) {
       var time = pad(i * m) + '&ndash;' + pad((i + 1) * m);
       return '<tr>' +
@@ -205,7 +217,7 @@
       '</tr>';
     }).join('');
 
-    return '<div class="card">' + stepsBar() + '<div class="tblwrap"><table>' +
+    return '<div class="card">' + stepsBar(s) + '<div class="tblwrap"><table>' +
       '<thead><tr><th style="width:74px">파트</th><th style="width:92px">시간</th>' +
       '<th style="width:84px">담당</th><th>담당 범위</th></tr></thead>' +
       '<tbody>' + rows + '</tbody>' +
@@ -273,6 +285,9 @@
     siblingLink: siblingLink,
     sessionUrl: sessionUrl,
     slotCount: slotCount,
+    slotMinutes: slotMinutes,
+    flowNote: flowNoteOf,
+    isCustom: isCustom,
     totalMinutes: totalMinutes,
     nav: nav,
     sessionGrid: sessionGrid,
