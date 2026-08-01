@@ -274,7 +274,9 @@ ul.do li:last-child{margin-bottom:0;}
   font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;
   background:var(--blue-soft);color:var(--blue-dk);white-space:nowrap;
 }
-.rec b{font-weight:600;color:var(--ink);}
+.rec .rt{flex:1;min-width:0;}
+.rec b{display:block;font-weight:600;color:var(--ink);}
+.rec .rt small{display:block;margin-top:1px;font-size:12.2px;color:var(--ink-4);}
 .rec .go{margin-left:auto;color:var(--ink-4);font-size:13px;}
 
 /* ---------- prev / next ---------- */

@@ -190,7 +190,14 @@ window.STUDY = {
           ],
           focus: '운영자가 맡습니다 — 담당 배분에서 누락된 것이 아닙니다' }
       ],
-      records: []
+
+      records: [
+        { kind: '참고자료',
+          title: '3-1. 전통자산 토큰화 생태계 개요',
+          who: '배예림',
+          part: '9개 레이어 정리 · BUIDL 사례',
+          url: 'materials/s1-3-1-tradfi-tokenization.html' }
+      ]
     },
 
     /* ===== 2회차 · 솔라나 RWA ========================================== */

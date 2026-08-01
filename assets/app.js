@@ -235,11 +235,16 @@
     }
 
     var items = s.records.map(function (r) {
-      var ext = r.url ? ' target="_blank" rel="noopener"' : '';
-      return '<a class="rec" href="' + (r.url || '#') + '"' + ext + '>' +
+      // 외부 링크만 새 탭으로. 사이트 안의 자료는 같은 탭에서 열립니다.
+      var external = /^https?:\/\//.test(r.url || '');
+      var attr = external ? ' target="_blank" rel="noopener"' : '';
+      var meta = [r.who, r.part].filter(Boolean).join(' · ');
+
+      return '<a class="rec" href="' + (r.url || '#') + '"' + attr + '>' +
         '<span class="kind">' + (r.kind || '자료') + '</span>' +
-        '<b>' + r.title + '</b>' +
-        '<span class="go">&#8599;</span>' +
+        '<span class="rt"><b>' + r.title + '</b>' +
+          (meta ? '<small>' + meta + '</small>' : '') + '</span>' +
+        '<span class="go">' + (external ? '&#8599;' : '&rsaquo;') + '</span>' +
       '</a>';
     }).join('');
 
