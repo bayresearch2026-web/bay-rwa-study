@@ -192,12 +192,25 @@ window.STUDY = {
           focus: '운영자가 맡습니다 — 담당 배분에서 누락된 것이 아닙니다' }
       ],
 
+      // 목차 순서로 정렬해 두면 발표 순서와 무관하게 찾기 쉽습니다.
       records: [
         { kind: '참고자료',
           title: '3-1. 전통자산 토큰화 생태계 개요',
           who: '배예림',
           part: '9개 레이어 정리 · BUIDL 사례',
           url: 'materials/s1-3-1-tradfi-tokenization.html' },
+
+        { kind: '발표자료',
+          title: '3-4. 직접 발행형 채권',
+          who: '이성재',
+          part: '슬라이드 9장 · EIB Bond 사례',
+          url: 'materials/s1-3-4-direct-bonds.html' },
+
+        { kind: '발표자료',
+          title: '3-5. 채권 펀드 / 토큰화 국채 펀드',
+          who: '이성재',
+          part: '슬라이드 10장 · BUIDL 사례',
+          url: 'materials/s1-3-5-bond-funds.html' },
 
         { kind: '참고자료',
           title: '4-4 · 4-6. 원자재 · 수집품 실물 보관형 토큰화',
