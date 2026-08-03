@@ -213,6 +213,12 @@ window.STUDY = {
           url: 'materials/s1-3-5-bond-funds.html' },
 
         { kind: '참고자료',
+          title: '4-1. 대체자산 토큰화 생태계 지도',
+          who: '장윤선',
+          part: '자산 유형 5분류 · 9개 레이어 · 회사별 수익구조',
+          url: 'materials/s1-4-1-alt-assets-map.html' },
+
+        { kind: '참고자료',
           title: '4-4 · 4-6. 원자재 · 수집품 실물 보관형 토큰화',
           who: '박의혁',
           part: 'PAXG · Courtyard 사례 · 보관/청구권 설계',
