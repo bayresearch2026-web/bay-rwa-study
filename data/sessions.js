@@ -197,7 +197,19 @@ window.STUDY = {
           title: '3-1. 전통자산 토큰화 생태계 개요',
           who: '배예림',
           part: '9개 레이어 정리 · BUIDL 사례',
-          url: 'materials/s1-3-1-tradfi-tokenization.html' }
+          url: 'materials/s1-3-1-tradfi-tokenization.html' },
+
+        { kind: '참고자료',
+          title: '4-4 · 4-6. 원자재 · 수집품 실물 보관형 토큰화',
+          who: '박의혁',
+          part: 'PAXG · Courtyard 사례 · 보관/청구권 설계',
+          url: 'materials/s1-4-4-4-6-vault-backed.html' },
+
+        { kind: '참고자료',
+          title: '4-5. 사모신용 펀드 지분형 토큰화',
+          who: '배예림',
+          part: 'Apollo ACRED · 심화자료 5편',
+          url: 'materials/s1-4-5-private-credit.html' }
       ]
     },
 
