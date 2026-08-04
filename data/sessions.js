@@ -194,11 +194,23 @@ window.STUDY = {
 
       // 목차 순서로 정렬해 두면 발표 순서와 무관하게 찾기 쉽습니다.
       records: [
-        { kind: '참고자료',
+        { kind: '발표자료',
+          title: '2-1 ~ 2-4. 스테이블코인 생태계 지도',
+          who: '이재환',
+          part: '3가지 유형 · 7개 레이어 · UST와 USDe 비교',
+          url: 'materials/s1-2-1-2-4-stablecoins.html' },
+
+        { kind: '발표자료',
           title: '3-1. 전통자산 토큰화 생태계 개요',
           who: '배예림',
           part: '9개 레이어 정리 · BUIDL 사례',
           url: 'materials/s1-3-1-tradfi-tokenization.html' },
+
+        { kind: '발표자료',
+          title: '3-2 · 3-3. 주식이 블록체인 위로 올라간다면?',
+          who: '신영환',
+          part: '성냥갑 비유 강의 · Exodus vs Backed AAPLx',
+          url: 'materials/s1-3-2-3-3-equities.html' },
 
         { kind: '발표자료',
           title: '3-4. 직접 발행형 채권',
@@ -212,19 +224,25 @@ window.STUDY = {
           part: '슬라이드 10장 · BUIDL 사례',
           url: 'materials/s1-3-5-bond-funds.html' },
 
-        { kind: '참고자료',
+        { kind: '발표자료',
           title: '4-1. 대체자산 토큰화 생태계 지도',
           who: '장윤선',
           part: '자산 유형 5분류 · 9개 레이어 · 회사별 수익구조',
           url: 'materials/s1-4-1-alt-assets-map.html' },
 
-        { kind: '참고자료',
+        { kind: 'PDF',
+          title: '4-2 · 4-3. 부동산 토큰화',
+          who: '노제희',
+          part: '슬라이드 23장 · 두바이 DLD·PRYPCO · RedSwan',
+          url: 'materials/s1-4-2-4-3-real-estate.pdf' },
+
+        { kind: '발표자료',
           title: '4-4 · 4-6. 원자재 · 수집품 실물 보관형 토큰화',
           who: '박의혁',
           part: 'PAXG · Courtyard 사례 · 보관/청구권 설계',
           url: 'materials/s1-4-4-4-6-vault-backed.html' },
 
-        { kind: '참고자료',
+        { kind: '발표자료',
           title: '4-5. 사모신용 펀드 지분형 토큰화',
           who: '배예림',
           part: 'Apollo ACRED · 심화자료 5편',
