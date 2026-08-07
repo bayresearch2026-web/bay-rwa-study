@@ -287,7 +287,14 @@ window.STUDY = {
           title: '00. 2-1과 2-2 조금 더 쉽게 이해해보기',
           who: '배예림',
           part: '과담보 · 청산 · 오라클 · 시장 구조 · 큐레이터까지',
-          url: 'materials/s2-00-lending-easy.html' }
+          url: 'materials/s2-00-lending-easy.html' },
+
+        // 위 자료와 같은 내용의 PDF 버전 (인쇄·오프라인용)
+        { kind: 'PDF',
+          title: '00. 2-1과 2-2 조금 더 쉽게 이해해보기 — PDF 버전',
+          who: '배예림',
+          part: '위 자료와 같은 내용 · 13쪽 · 인쇄용',
+          url: 'materials/s2-00-lending-easy.pdf' }
       ]
     },
 
