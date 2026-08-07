@@ -279,6 +279,17 @@ ul.do li:last-child{margin-bottom:0;}
 .rec .rt small{display:block;margin-top:1px;font-size:12.2px;color:var(--ink-4);}
 .rec .go{margin-left:auto;color:var(--ink-4);font-size:13px;}
 
+/* 파일이 아직 없는 자리 */
+.rec.wait{background:#fcfcfd;cursor:default;}
+.rec.wait:hover{background:#fcfcfd;}
+.rec.wait b{color:var(--ink-3);}
+.rec.wait .kind{background:var(--line-2);color:var(--ink-3);}
+.rec .soon{
+  margin-left:auto;white-space:nowrap;
+  font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;
+  background:#fff6e6;color:#9a6608;
+}
+
 /* ---------- prev / next ---------- */
 .pager{
   display:flex;gap:12px;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);

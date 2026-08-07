@@ -235,15 +235,22 @@
     }
 
     var items = s.records.map(function (r) {
-      // 외부 링크만 새 탭으로. 사이트 안의 자료는 같은 탭에서 열립니다.
-      var external = /^https?:\/\//.test(r.url || '');
-      var attr = external ? ' target="_blank" rel="noopener"' : '';
       var meta = [r.who, r.part].filter(Boolean).join(' · ');
-
-      return '<a class="rec" href="' + (r.url || '#') + '"' + attr + '>' +
+      var body =
         '<span class="kind">' + (r.kind || '자료') + '</span>' +
         '<span class="rt"><b>' + r.title + '</b>' +
-          (meta ? '<small>' + meta + '</small>' : '') + '</span>' +
+          (meta ? '<small>' + meta + '</small>' : '') + '</span>';
+
+      // 파일이 아직 없는 자리 — 링크 대신 "준비 중"으로 표시 (클릭 불가)
+      if (r.pending || !r.url) {
+        return '<div class="rec wait">' + body + '<span class="soon">준비 중</span></div>';
+      }
+
+      // 외부 링크만 새 탭으로. 사이트 안의 자료는 같은 탭에서 열립니다.
+      var external = /^https?:\/\//.test(r.url);
+      var attr = external ? ' target="_blank" rel="noopener"' : '';
+
+      return '<a class="rec" href="' + r.url + '"' + attr + '>' + body +
         '<span class="go">' + (external ? '&#8599;' : '&rsaquo;') + '</span>' +
       '</a>';
     }).join('');
