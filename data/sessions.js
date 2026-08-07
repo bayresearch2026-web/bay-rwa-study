@@ -284,10 +284,10 @@ window.STUDY = {
 
       records: [
         { kind: '배경자료',
-          title: '00. 2-1 · 2-2 배경 정리와 참고 글',
+          title: '00. 2-1과 2-2 조금 더 쉽게 이해해보기',
           who: '배예림',
-          part: '온체인 렌딩 기본 개념 + 함께 읽으면 좋은 글',
-          pending: true }
+          part: '과담보 · 청산 · 오라클 · 시장 구조 · 큐레이터까지',
+          url: 'materials/s2-00-lending-easy.html' }
       ]
     },
 
