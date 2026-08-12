@@ -294,7 +294,55 @@ window.STUDY = {
           title: '00. 2-1과 2-2 조금 더 쉽게 이해해보기 — PDF 버전',
           who: '배예림',
           part: '위 자료와 같은 내용 · 13쪽 · 인쇄용',
-          url: 'materials/s2-00-lending-easy.pdf' }
+          url: 'materials/s2-00-lending-easy.pdf' },
+
+        { kind: '발표자료',
+          title: '2-1 · 2-2. 토큰화 자산은 어떻게 담보가 되는가',
+          who: '박의혁',
+          part: '과담보 · LTV · 프로토콜을 가르는 3개 축 · 렌딩/CDP 비교',
+          url: 'materials/s2-2-1-2-2-collateral.html' },
+
+        { kind: '보충자료',
+          title: '2-1 · 2-2 보충. 전당포에서 온체인까지',
+          who: '박의혁',
+          part: '헤어컷 · Repo · CLO 등 전통금융 담보 구조와의 대조',
+          url: 'materials/s2-2-1-2-2-tradfi-supp.html' },
+
+        { kind: '발표자료',
+          title: '3-1 (1). Aave Horizon — 허가형 렌딩 프로토콜',
+          who: '장윤선',
+          part: '3가지 분류축 · 예치~차입 6단계 · 허가형 자산 + 비허가형 유동성',
+          url: 'materials/s2-3-1-1-aave-horizon.html' },
+
+        { kind: '발표자료',
+          title: '3-1 (2). Morpho — 격리 시장 렌딩 프로토콜',
+          who: '신영환',
+          part: '다섯 부품으로 여는 방 · 큐레이터 · 네 프로토콜 비교',
+          url: 'materials/s2-3-1-2-morpho.html' },
+
+        { kind: 'PDF',
+          title: '3-1 (3). Kamino — 솔라나 최대 렌딩 프로토콜',
+          who: '노제희',
+          part: '슬라이드 9장 · 큐레이터의 역할 · ONyc 재보험 사례',
+          url: 'materials/s2-3-1-3-kamino.pdf' },
+
+        { kind: '발표자료',
+          title: '3-1 (4). Jupiter Lend — 토큰화 주식의 렌딩 프로토콜',
+          who: '이성재',
+          part: 'xStocks 담보 편입 · 공용 풀 + 종목별 볼트 구조',
+          url: 'materials/s2-3-1-4-jupiter-lend.html' },
+
+        { kind: '발표자료',
+          title: '3-1 (5). Loopscale — 금리와 만기를 지정하는 렌딩',
+          who: '이성재',
+          part: '오더북 기반 매칭 · 체결 시점에 조건 고정 · 담보별 시장 분리',
+          url: 'materials/s2-3-1-5-loopscale.html' },
+
+        { kind: '발표자료',
+          title: '3-2. Sky vs Falcon Finance — CDP 두 방식',
+          who: '이재환',
+          part: 'DeFi 1.0~4.0 · Pendle · 스테이블코인 진화 · 렌딩/CDP 비교',
+          url: 'materials/s2-3-2-sky-falcon.html' }
       ]
     },
 
