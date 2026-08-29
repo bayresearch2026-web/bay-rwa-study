@@ -19,11 +19,13 @@
  * 진행표(시간표)는 assign 순서대로 자동 생성되므로 따로 적지 않습니다.
  *
  * 스터디원 6명 — 장윤선 · 이재환 · 노제희 · 신영환 · 박의혁 · 이성재
- *   08-18·08-25(현재 3·4회차)은 박의혁 불참으로 배예림(운영자)이 대신 발표합니다.
+ *   08-25는 외부 세션으로 취소돼, 4회차부터 한 주씩 밀렸습니다(4회차 09-01).
+ *   08-18(3회차)은 박의혁 불참, 09-01(4회차)은 신영환 불참으로
+ *   배예림(운영자)이 대신 발표합니다.
  *   불참은 날짜 기준이므로, 회차 순서를 바꾸면 대체 배정도 날짜에 맞게 다시 확인하세요.
  *
  *   ⚠️ 신영환님은 세션 중간에 나가야 하므로 반드시 Part 1~3 안에 배치할 것.
- *      (assign 배열의 0~2번째 자리. 현재 9회차에 걸쳐 P1·P2·P3 각 3회씩 배분)
+ *      (assign 배열의 0~2번째 자리. 참여하는 회차마다 P1~P3 안에 두세요)
  *
  *   나머지 5명은 회차마다 무작위 순서이며, 같은 파트가 4회 이상 겹치거나
  *   연속 회차에 같은 파트를 반복하지 않도록 배치했습니다.
@@ -40,7 +42,7 @@ window.STUDY = {
     eyebrow: 'BAY RESEARCH TEAM',   // 홈 히어로 제목 위 작은 글씨
     heroAccent: 'RWA',              // 파란 글씨
     heroRest: 'Study Archive',
-    heroSub: 'Blockchain at Yonsei 리서치팀 · Xangle RWA Series 완독 9회차',
+    heroSub: 'Blockchain at Yonsei 리서치팀 · Xangle RWA Series 완독 10회차',
     // 노션 공용 페이지를 쓰면 여기에 링크. 비워두면 홈에서 버튼이 숨겨집니다.
     notionUrl: '',
 
@@ -258,7 +260,7 @@ window.STUDY = {
           parts: [
             { n: '3-1. (3)', t: 'Kamino : 솔라나 최대 렌딩 프로토콜' }
           ],
-          focus: 'Kamino의 구조와 규모 (9회차 솔라나 편과 연결)' },
+          focus: 'Kamino의 구조와 규모 (7회차 솔라나 편과 연결)' },
 
         { who: '이성재',
           parts: [
@@ -450,13 +452,72 @@ window.STUDY = {
       ]
     },
 
-    /* ===== 4회차 · 토큰화 채권 ==============================================*/
+    /* ===== 4회차 · 디파이 : 탈중앙화 거래소 ==================================*/
     {
       no: 4,
+      topic: '디파이 : 탈중앙화 거래소',
+      title: { accent: 'DeFi DEX', rest: 'Study Guide' },
+      status: 'ready',
+      date: '2026-09-01',
+      source: {
+        label: 'Xangle RWA Series — 디파이 : 탈중앙화 거래소',
+        url: 'https://xangle.io/research/detail/2532',
+        short: 'xangle.io/research/detail/2532'
+      },
+      // 4장(현물 DEX 프로토콜)의 네 방식을 한 명씩 맡고,
+      // 앞 프레임(1~3장)과 결론(6장)은 운영자가 묶어서 진행합니다.
+      // 09-01은 신영환 불참으로 배예림(운영자)이 대신 발표합니다.
+      assign: [
+        { who: '배예림',
+          parts: [
+            { n: '1.',   t: '토큰화 자산의 거래' },
+            { n: '2-1.', t: '현물 거래' },
+            { n: '2-2.', t: '무기한 선물 거래' },
+            { n: '3.',   t: '토큰화 자산 거래시장을 설계할 때 고려할 요소' },
+            { n: '6.',   t: '결론 : 토큰화 자산의 거래시장은 아직 초기 단계' }
+          ],
+          focus: '현물·무기한 선물의 구분과 거래시장 설계 요소 — 뒤 다섯 프로토콜을 읽는 공통 프레임과 결론' },
+
+        { who: '장윤선',
+          parts: [
+            { n: '4-1.', t: '유동성 풀로 직접 시장을 개설하는 방식' }
+          ],
+          focus: '유동성 풀로 시장을 여는 방식의 작동 원리와 한계' },
+
+        { who: '박의혁',
+          parts: [
+            { n: '4-2.', t: '전문 사업자가 유동성을 운영하는 방식' }
+          ],
+          focus: '전문 사업자가 유동성을 운영하는 구조 / 풀 방식과의 차이' },
+
+        { who: '이성재',
+          parts: [
+            { n: '4-3.', t: '전문 체결자의 호가를 활용하는 방식' }
+          ],
+          focus: '전문 체결자의 호가를 활용한 체결·가격 형성 구조' },
+
+        { who: '노제희',
+          parts: [
+            { n: '4-4.', t: '여러 거래 경로를 묶어 사용자에게 연결하는 방식' }
+          ],
+          focus: '여러 경로를 묶어 연결하는 구조 — 앞 세 방식을 어떻게 조합하는가' },
+
+        { who: '이재환',
+          parts: [
+            { n: '5.', t: '무기한 선물 DEX 프로토콜' }
+          ],
+          focus: '무기한 선물 DEX의 구조 / 현물 DEX와의 차이' }
+      ],
+      records: []
+    },
+
+    /* ===== 5회차 · 토큰화 채권 ==============================================*/
+    {
+      no: 5,
       topic: '토큰화 채권',
       title: { accent: 'Tokenized Bonds', rest: 'Study Guide' },
       status: 'ready',
-      date: '2026-08-25',
+      date: '2026-09-08',
       source: {
         label: 'Xangle RWA Series — 토큰화 채권',
         url: 'https://xangle.io/research/detail/2508',
@@ -508,13 +569,13 @@ window.STUDY = {
       records: []
     },
 
-    /* ===== 5회차 · 토큰화 대체자산 ============================================*/
+    /* ===== 6회차 · 토큰화 대체자산 ============================================*/
     {
-      no: 5,
+      no: 6,
       topic: '토큰화 대체자산',
       title: { accent: 'Alternative Assets', rest: 'Study Guide' },
       status: 'ready',
-      date: '2026-09-01',
+      date: '2026-09-15',
       source: {
         label: 'Xangle RWA Series — 토큰화 대체자산',
         url: 'https://xangle.io/research/detail/2517',
@@ -557,13 +618,13 @@ window.STUDY = {
       records: []
     },
 
-    /* ===== 6회차 · 솔라나 RWA 주요 플레이어 =====================================*/
+    /* ===== 7회차 · 솔라나 RWA 주요 플레이어 =====================================*/
     {
-      no: 6,
+      no: 7,
       topic: '솔라나 RWA 주요 플레이어',
       title: { accent: 'Solana RWA', rest: 'Study Guide' },
       status: 'ready',
-      date: '2026-09-08',
+      date: '2026-09-22',
       source: {
         label: 'Xangle RWA Series — 솔라나 RWA : 주요 플레이어 살펴보기',
         url: 'https://xangle.io/research/detail/2494',
@@ -613,13 +674,13 @@ window.STUDY = {
       records: []
     },
 
-    /* ===== 7회차 · 커스터디 / KMS ==========================================*/
+    /* ===== 8회차 · 커스터디 / KMS ==========================================*/
     {
-      no: 7,
+      no: 8,
       topic: '커스터디 / KMS',
       title: { accent: 'Custody & KMS', rest: 'Study Guide' },
       status: 'ready',
-      date: '2026-09-15',
+      date: '2026-09-29',
       source: {
         label: 'Xangle RWA Series — 커스터디/KMS',
         url: 'https://xangle.io/research/detail/2499',
@@ -674,13 +735,13 @@ window.STUDY = {
       records: []
     },
 
-    /* ===== 8회차 · 지갑 인프라 ==============================================*/
+    /* ===== 9회차 · 지갑 인프라 ==============================================*/
     {
-      no: 8,
+      no: 9,
       topic: '지갑 인프라',
       title: { accent: 'Wallet Infra', rest: 'Study Guide' },
       status: 'ready',
-      date: '2026-09-22',
+      date: '2026-10-06',
       source: {
         label: 'Xangle RWA Series — 지갑 인프라',
         url: 'https://xangle.io/research/detail/2520',
@@ -732,13 +793,13 @@ window.STUDY = {
       records: []
     },
 
-    /* ===== 9회차 · 컴플라이언스 ==============================================*/
+    /* ===== 10회차 · 컴플라이언스 ==============================================*/
     {
-      no: 9,
+      no: 10,
       topic: '컴플라이언스',
       title: { accent: 'Compliance', rest: 'Study Guide' },
       status: 'ready',
-      date: '2026-09-29',
+      date: '2026-10-13',
       source: {
         label: 'Xangle RWA Series — 컴플라이언스',
         url: 'https://xangle.io/research/detail/2512',
