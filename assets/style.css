@@ -94,6 +94,8 @@ h1 .ac{color:var(--blue);}
 .cta .u{font-weight:500;opacity:.72;font-size:12.8px;
   padding-left:9px;margin-left:1px;border-left:1px solid rgba(255,255,255,.34);}
 .cta .go{font-size:15px;line-height:1;opacity:.9;}
+.ctas{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px;}
+.ctas .cta{margin:0;}
 .stats{display:flex;gap:10px;flex-wrap:wrap;}
 .stat{
   background:var(--card);border:1px solid var(--line);border-radius:12px;

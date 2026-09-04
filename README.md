@@ -1,6 +1,6 @@
 # BAY 리서치팀 · RWA 스터디
 
-Blockchain at Yonsei 리서치팀 RWA 스터디 진행안 사이트. Xangle RWA Series 완독 10회차.
+Blockchain at Yonsei 리서치팀 RWA 스터디 진행안 사이트. Xangle RWA Series 완독 9회차.
 
 매주 화요일 · 2026-08-04 시작 · 2026-09-29 종료
 

@@ -30,9 +30,15 @@
   document.getElementById('nav').innerHTML = UI.nav({ back: true, pill: s.topic });
 
   /* ---- 히어로 ---- */
-  var cta = s.source
-    ? '<a class="cta" href="' + s.source.url + '" target="_blank" rel="noopener">원문 아티클 읽기' +
-        '<span class="u">' + s.source.short + '</span><span class="go">&#8599;</span></a>'
+  /* 한 회차에서 아티클을 두 편 이상 읽으면 sources 배열에 넣습니다.
+     한 편이면 source 하나만 두면 됩니다. */
+  var srcs = s.sources || (s.source ? [s.source] : []);
+  var cta = srcs.length
+    ? '<div class="ctas">' + srcs.map(function (src) {
+        return '<a class="cta" href="' + src.url + '" target="_blank" rel="noopener">' +
+          (srcs.length > 1 ? src.label + ' 원문' : '원문 아티클 읽기') +
+          '<span class="u">' + src.short + '</span><span class="go">&#8599;</span></a>';
+      }).join('') + '</div>'
     : '';
 
   var d = UI.fmtDate(s.date);
