@@ -1,20 +1,23 @@
 # BAY 리서치팀 · RWA 스터디
 
-Blockchain at Yonsei 리서치팀 RWA 스터디 진행안 사이트. Xangle RWA Series 완독 9회차.
+Blockchain at Yonsei 리서치팀 RWA 스터디 진행안 사이트. Xangle RWA Series 완독 10회차.
 
-매주 화요일 · 2026-08-04 시작 · 2026-09-29 종료
+매주 화요일 · 2026-08-04 시작 · 2026-10-13 종료
 
 | 회차 | 일자 | 주제 | 원문 |
 |---|---|---|---|
 | 1 | 08-04 (화) | RWA 토큰화 생태계 분류 | [2479](https://xangle.io/research/detail/2479) |
-| 2 | 08-11 (화) | 솔라나 RWA 주요 플레이어 | [2494](https://xangle.io/research/detail/2494) |
+| 2 | 08-11 (화) | 디파이 : 렌딩 | [2521](https://xangle.io/research/detail/2521) |
 | 3 | 08-18 (화) | 토큰화 주식 | [2496](https://xangle.io/research/detail/2496) |
-| 4 | 08-25 (화) | 커스터디 / KMS | [2499](https://xangle.io/research/detail/2499) |
-| 5 | 09-01 (화) | 토큰화 채권 | [2508](https://xangle.io/research/detail/2508) |
-| 6 | 09-08 (화) | 컴플라이언스 | [2512](https://xangle.io/research/detail/2512) |
-| 7 | 09-15 (화) | 토큰화 대체자산 | [2517](https://xangle.io/research/detail/2517) |
-| 8 | 09-22 (화) | 지갑 인프라 | [2520](https://xangle.io/research/detail/2520) |
-| 9 | 09-29 (화) | 디파이 : 렌딩 | [2521](https://xangle.io/research/detail/2521) |
+| 4 | 09-01 (화) | 디파이 : 탈중앙화 거래소 | [2532](https://xangle.io/research/detail/2532) |
+| 5 | 09-08 (화) | 토큰화 채권 · 토큰화 대체자산 | [2508](https://xangle.io/research/detail/2508) · [2517](https://xangle.io/research/detail/2517) |
+| 6 | 09-15 (화) | 자유 주제 코멘트 (글쓰기 과제) | — |
+| 7 | 09-22 (화) | 솔라나 RWA 주요 플레이어 | [2494](https://xangle.io/research/detail/2494) |
+| 8 | 09-29 (화) | 커스터디 / KMS | [2499](https://xangle.io/research/detail/2499) |
+| 9 | 10-06 (화) | 지갑 인프라 | [2520](https://xangle.io/research/detail/2520) |
+| 10 | 10-13 (화) | 컴플라이언스 | [2512](https://xangle.io/research/detail/2512) |
+
+08-25는 외부 세션으로 쉬었고, 09-15는 모이지 않고 각자 글 한 편으로 대체합니다.
 
 홈 화면은 오늘 날짜를 기준으로 다음에 진행할 회차에 "다음 세션" 배지를 자동으로 붙입니다.
 
@@ -28,7 +31,15 @@ Blockchain at Yonsei 리서치팀 RWA 스터디 진행안 사이트. Xangle RWA 
 > 그대로 두고, 4회차 이후로는 배예림(운영자)이 여섯 번째 자리를 맡습니다.
 
 5명은 회차마다 무작위 순서이며, 같은 파트가 4회 이상 겹치거나 연속 회차에
-같은 파트를 반복하지 않도록 배치했습니다. 전원 9회씩 발표합니다.
+같은 파트를 반복하지 않도록 배치했습니다.
+
+### 글쓰기 회차 (`format: 'writing'`)
+
+모이지 않고 각자 글을 쓰는 회차는 `format: 'writing'`으로 표시합니다. 이 회차는 `source`·`assign` 대신
+`summary`(한 줄 소개), `writing`(마감 `deadlines`, 고르는 기준 `pick`, `examples`, 제출 안내 `submit`),
+`topics`(작성자별 고른 주제 — 비워두면 "미정")를 씁니다. 화면은 담당 배분·진행표 대신
+과제 안내 → 예시 주제 → 일정·제출 → 주제 현황 → 제출된 글 순서로 그려지고, 홈 카드에는
+"글쓰기 과제" 배지와 제출일이 붙습니다. 제출된 글은 다른 회차처럼 `records`에 링크로 넣습니다.
 
 회차 순서는 아티클 발행 순서를 따랐습니다. 담당 배분은 각 아티클 목차를 6등분한 초안이므로
 팀 사정에 맞게 조정하세요. 순서를 바꾸려면 `data/sessions.js`의 `sessions` 배열 순서를 옮기고
@@ -37,8 +48,8 @@ Blockchain at Yonsei 리서치팀 RWA 스터디 진행안 사이트. Xangle RWA 
 빌드 도구·의존성 없는 정적 사이트입니다. HTML/CSS/JS 파일 그대로 서빙됩니다.
 
 ```
-index.html          홈 — 9개 회차 카드 + 공통 운영 규칙
-session.html        회차 상세 — ?s=1 ~ ?s=9
+index.html          홈 — 회차 카드 + 공통 운영 규칙
+session.html        회차 상세 — ?s=<회차 번호>
 data/sessions.js    ★ 모든 회차 내용. 수정은 여기만 하면 됨
 assets/style.css    전 페이지 공용 스타일
 assets/app.js       공용 렌더링 로직
@@ -110,7 +121,7 @@ records: [
 ### 공통 규칙 바꾸기
 
 인원수, 인당 시간, 사전 준비 일정(D-7 / D-2 …), 30분 구성은 `defaults`에 있습니다.
-여기를 고치면 9개 회차에 한번에 반영됩니다.
+여기를 고치면 모든 회차에 한번에 반영됩니다.
 
 ### 공용 노션 페이지 링크
 

@@ -23,6 +23,8 @@
  *   당시 사실이므로 그대로 두고, 4회차 이후는 배예림(운영자)이 그 자리를 맡습니다.
  *   08-25는 외부 세션으로 취소돼 4회차부터 한 주씩 밀렸고(4회차 09-01),
  *   09-08(5회차)은 토큰화 채권·토큰화 대체자산 두 편을 합쳐 진행합니다.
+ *   09-15(6회차)는 모이지 않고 자유 주제 코멘트 글로 대체합니다 (format: 'writing').
+ *   그만큼 솔라나 이후 회차가 한 주씩 밀려 10-13에 끝납니다.
  *   08-18(3회차)은 박의혁 불참으로 배예림이 대신 발표했습니다.
  *   불참은 날짜 기준이므로, 회차 순서를 바꾸면 대체 배정도 날짜에 맞게 다시 확인하세요.
  *
@@ -41,7 +43,7 @@ window.STUDY = {
     eyebrow: 'BAY RESEARCH TEAM',   // 홈 히어로 제목 위 작은 글씨
     heroAccent: 'RWA',              // 파란 글씨
     heroRest: 'Study Archive',
-    heroSub: 'Blockchain at Yonsei 리서치팀 · Xangle RWA Series 완독 9회차',
+    heroSub: 'Blockchain at Yonsei 리서치팀 · Xangle RWA Series 완독 10회차',
     // 노션 공용 페이지를 쓰면 여기에 링크. 비워두면 홈에서 버튼이 숨겨집니다.
     notionUrl: '',
 
@@ -259,7 +261,7 @@ window.STUDY = {
           parts: [
             { n: '3-1. (3)', t: 'Kamino : 솔라나 최대 렌딩 프로토콜' }
           ],
-          focus: 'Kamino의 구조와 규모 (6회차 솔라나 편과 연결)' },
+          focus: 'Kamino의 구조와 규모 (7회차 솔라나 편과 연결)' },
 
         { who: '이성재',
           parts: [
@@ -617,13 +619,67 @@ window.STUDY = {
       records: []
     },
 
-    /* ===== 6회차 · 솔라나 RWA 주요 플레이어 =====================================*/
+    /* ===== 6회차 · 자유 주제 코멘트 (글쓰기 과제) =============================*/
+    // 09-15 세션은 모여서 발표하지 않고, 각자 궁금했던 것 하나를 파고드는 글로 대체합니다.
+    // format: 'writing' 이면 화면이 담당 배분·진행표 대신 과제 안내와 제출 현황을 그립니다.
     {
       no: 6,
+      format: 'writing',
+      topic: '자유 주제 코멘트',
+      title: { accent: 'Open Topic', rest: 'Comment Piece' },
+      status: 'ready',
+      date: '2026-09-15',
+      summary: '스터디 범위 안에서 궁금했던 것 하나를 골라 직접 파고드는 글',  // 홈 카드 · 히어로 부제
+      writing: {
+        deadlines: [
+          { what: '주제 선정',   date: '2026-09-10', time: '23:59' },
+          { what: '아티클 제출', date: '2026-09-16', time: '23:59' }
+        ],
+        // 무엇을 고르나 — 셋 중 하나
+        pick: [
+          '공부하다가 궁금했던 부분',
+          '개념이 잘 이해되지 않아 조금 더 파보고 싶었던 부분',
+          '관련 기사나 프로젝트를 보면서 추가로 알아보고 싶었던 부분'
+        ],
+        scopeNote: '꼭 RWA에만 한정할 필요는 없습니다. 이번 스터디에서 DeFi 렌딩 프로토콜 등도 함께 다룬 만큼, ' +
+                   '스터디에서 공부한 범위와 관련이 있다면 <b>어떤 주제든 가능</b>합니다.',
+        // 운영자가 공부하면서 실제로 궁금했던 것들
+        examples: [
+          'USYC(서클의 토큰화 국채)는 왜 빠르게 성장하고 있을까?',
+          'Morpho에서 시장별로 Oracle을 사용한다는 것은 무슨 의미일까?',
+          'Ethena의 USDe는 어떤 구조로 작동할까?',
+          '토큰화 채권에서 펀드지분형과 연계증권형은 무엇이 다를까?',
+          '크립토 카드 업체들은 어떤 구조와 비즈니스 모델을 가지고 있을까?',
+          'Curve Finance가 도입하려는 Soft Liquidation은 기존 청산 방식과 무엇이 다를까?'
+        ],
+        examplesNote: '예시를 그대로 골라도 되고 전혀 다른 주제를 잡아도 됩니다. ' +
+                      '공부하면서 생긴 궁금증 하나를 <b>직접 파고들어 보는 데</b> 초점을 맞춰 주세요.',
+        submit: [
+          { k: '제출 방법', v: '개인 노션에 작성한 뒤 <b>코멘트 허용</b>으로 링크를 공유합니다. 시간이 허락하면 피드백을 드립니다.' },
+          { k: '게재',      v: 'BAY 홈페이지와 BAY 미디엄 계정에도 올릴 계획입니다.' },
+          { k: '주의',      v: '외부에 나가는 글이므로 <b>특정 프로젝트 홍보성 글처럼 보이지 않게</b> 주의해 주세요.' }
+        ]
+      },
+      // 주제 선정 현황 — 09-10 마감 뒤 채웁니다. topic이 비어 있으면 "미정"으로 표시됩니다.
+      topics: [
+        { who: '장윤선', topic: '' },
+        { who: '이재환', topic: '' },
+        { who: '노제희', topic: '' },
+        { who: '박의혁', topic: '' },
+        { who: '이성재', topic: '' },
+        { who: '배예림', topic: '' }
+      ],
+      // 제출된 글 — { kind: '노션', title: '글 제목', who: '이름', url: 'https://…' } 로 추가
+      records: []
+    },
+
+    /* ===== 7회차 · 솔라나 RWA 주요 플레이어 =====================================*/
+    {
+      no: 7,
       topic: '솔라나 RWA 주요 플레이어',
       title: { accent: 'Solana RWA', rest: 'Study Guide' },
       status: 'ready',
-      date: '2026-09-15',
+      date: '2026-09-22',
       source: {
         label: 'Xangle RWA Series — 솔라나 RWA : 주요 플레이어 살펴보기',
         url: 'https://xangle.io/research/detail/2494',
@@ -673,13 +729,13 @@ window.STUDY = {
       records: []
     },
 
-    /* ===== 7회차 · 커스터디 / KMS ==========================================*/
+    /* ===== 8회차 · 커스터디 / KMS ==========================================*/
     {
-      no: 7,
+      no: 8,
       topic: '커스터디 / KMS',
       title: { accent: 'Custody & KMS', rest: 'Study Guide' },
       status: 'ready',
-      date: '2026-09-22',
+      date: '2026-09-29',
       source: {
         label: 'Xangle RWA Series — 커스터디/KMS',
         url: 'https://xangle.io/research/detail/2499',
@@ -734,13 +790,13 @@ window.STUDY = {
       records: []
     },
 
-    /* ===== 8회차 · 지갑 인프라 ==============================================*/
+    /* ===== 9회차 · 지갑 인프라 ==============================================*/
     {
-      no: 8,
+      no: 9,
       topic: '지갑 인프라',
       title: { accent: 'Wallet Infra', rest: 'Study Guide' },
       status: 'ready',
-      date: '2026-09-29',
+      date: '2026-10-06',
       source: {
         label: 'Xangle RWA Series — 지갑 인프라',
         url: 'https://xangle.io/research/detail/2520',
@@ -792,13 +848,13 @@ window.STUDY = {
       records: []
     },
 
-    /* ===== 9회차 · 컴플라이언스 ==============================================*/
+    /* ===== 10회차 · 컴플라이언스 ==============================================*/
     {
-      no: 9,
+      no: 10,
       topic: '컴플라이언스',
       title: { accent: 'Compliance', rest: 'Study Guide' },
       status: 'ready',
-      date: '2026-10-06',
+      date: '2026-10-13',
       source: {
         label: 'Xangle RWA Series — 컴플라이언스',
         url: 'https://xangle.io/research/detail/2512',

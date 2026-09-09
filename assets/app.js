@@ -65,6 +65,15 @@
 
   function totalMinutes(s) { return slotCount(s) * slotMinutes(s); }
 
+  /** 모여서 발표하는 대신 글을 쓰는 회차인지 (format: 'writing') */
+  function isWriting(s) { return !!(s && s.format === 'writing'); }
+
+  /** 글쓰기 회차의 마지막 마감 (보통 제출일) */
+  function lastDeadline(s) {
+    var ds = (s.writing && s.writing.deadlines) || [];
+    return ds.length ? ds[ds.length - 1] : null;
+  }
+
   /** 회차 제목: "01 · 컴플라이언스" */
   function label(s) { return pad(s.no) + '회차 · ' + s.topic; }
 
@@ -123,6 +132,14 @@
     var foot = tbd
       ? '진행안 준비 전' + (d ? ' · ' + d.long : '')
       : slotCount(s) + '명 · ' + totalMinutes(s) + '분' + (d ? ' · ' + d.long : '');
+
+    // 글쓰기 회차 — 모여서 발표하지 않으므로 인원·시간 대신 마감일을 보여줍니다.
+    if (isWriting(s)) {
+      var due = lastDeadline(s);
+      b = { cls: 'writing', text: '글쓰기 과제' };
+      srcText = s.summary || srcText;
+      foot = '자유 주제 코멘트' + (due ? ' · ' + fmtDate(due.date).long + ' 제출' : '');
+    }
 
     return '' +
       '<a class="scard' + (tbd ? ' tbd' : '') + (isNext ? ' next' : '') + '" href="' + sessionUrl(s.no) + '">' +
@@ -226,11 +243,11 @@
 
   /* ---- 섹션: 진행 기록 (세션 이후 채워지는 자리) ------------------------ */
 
-  function recordList(s) {
+  function recordList(s, emptyText) {
     if (!s.records || !s.records.length) {
       return '<div class="card"><div class="empty">' +
         '<b>아직 기록이 없습니다</b>' +
-        '세션이 끝나면 발표 정리본 · 질문 답변 · 참고 자료가 이곳에 모입니다.' +
+        (emptyText || '세션이 끝나면 발표 정리본 · 질문 답변 · 참고 자료가 이곳에 모입니다.') +
       '</div></div>';
     }
 
@@ -256,6 +273,67 @@
     }).join('');
 
     return '<div class="card"><div class="reclist">' + items + '</div></div>';
+  }
+
+  /* ---- 글쓰기 회차: 과제 안내 · 예시 · 일정 · 주제 현황 ------------------ */
+
+  /** 무엇을 고르나 — 세 갈래 + 범위 안내 */
+  function writingGuide(s) {
+    var wr = s.writing || {};
+    var items = (wr.pick || []).map(function (t, i) {
+      return '<div class="pick"><i>' + (i + 1) + '</i>' + t + '</div>';
+    }).join('');
+
+    return '<div class="card"><div class="picks">' +
+      '<p class="lead">스터디를 하면서 아래 중 <b>하나를 골라</b> 자유롭게 작성합니다.</p>' + items +
+    '</div></div>' +
+    (wr.scopeNote ? '<div class="note">' + wr.scopeNote + '</div>' : '');
+  }
+
+  /** 예시 주제 — 번호 목록 */
+  function writingExamples(s) {
+    var wr = s.writing || {};
+    if (!wr.examples || !wr.examples.length) return null;
+
+    var items = wr.examples.map(function (t, i) {
+      return '<li><span class="n">' + pad(i + 1) + '</span><span>' + t + '</span></li>';
+    }).join('');
+
+    return '<div class="card"><ol class="exlist">' + items + '</ol></div>' +
+      (wr.examplesNote ? '<div class="note">' + wr.examplesNote + '</div>' : '');
+  }
+
+  /** 일정 · 제출 방법 — 마감 줄 뒤에 제출 안내 줄 */
+  function writingSchedule(s) {
+    var wr = s.writing || {};
+    var rows = (wr.deadlines || []).map(function (dl) {
+      var d = fmtDate(dl.date);
+      return '<tr><td class="t">' + dl.what + '</td>' +
+        '<td><b>' + d.long + '</b>' + (dl.time ? ' <small>' + dl.time + '까지</small>' : '') + '</td></tr>';
+    }).join('');
+    rows += (wr.submit || []).map(function (r) {
+      return '<tr><td class="t">' + r.k + '</td><td>' + r.v + '</td></tr>';
+    }).join('');
+
+    return '<div class="card"><div class="tblwrap"><table>' +
+      '<thead><tr><th style="width:130px">항목</th><th>내용</th></tr></thead>' +
+      '<tbody>' + rows + '</tbody>' +
+    '</table></div></div>';
+  }
+
+  /** 주제 선정 현황 — 아직 안 정했으면 "미정" */
+  function topicTable(s) {
+    if (!s.topics || !s.topics.length) return null;
+
+    var rows = s.topics.map(function (t) {
+      return '<tr><td><span class="who">' + t.who + '</span></td>' +
+        '<td>' + (t.topic ? '<b>' + t.topic + '</b>' : '<span class="undecided">미정</span>') + '</td></tr>';
+    }).join('');
+
+    return '<div class="card"><div class="tblwrap"><table>' +
+      '<thead><tr><th style="width:110px">작성자</th><th>고른 주제</th></tr></thead>' +
+      '<tbody>' + rows + '</tbody>' +
+    '</table></div></div>';
   }
 
   /* ---- 이전 / 다음 회차 ------------------------------------------------ */
@@ -308,6 +386,12 @@
     stepsBar: stepsBar,
     flowTable: flowTable,
     recordList: recordList,
+    isWriting: isWriting,
+    lastDeadline: lastDeadline,
+    writingGuide: writingGuide,
+    writingExamples: writingExamples,
+    writingSchedule: writingSchedule,
+    topicTable: topicTable,
     pager: pager,
     section: section,
     find: function (no) {
