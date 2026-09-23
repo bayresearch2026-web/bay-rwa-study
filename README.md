@@ -2,7 +2,7 @@
 
 Blockchain at Yonsei 리서치팀 RWA 스터디 진행안 사이트. Xangle RWA Series 완독 10회차.
 
-매주 화요일 · 2026-08-04 시작 · 2026-10-13 종료
+매주 화요일 · 2026-08-04 시작 · 2026-10-20 종료
 
 | 회차 | 일자 | 주제 | 원문 |
 |---|---|---|---|
@@ -12,12 +12,12 @@ Blockchain at Yonsei 리서치팀 RWA 스터디 진행안 사이트. Xangle RWA 
 | 4 | 09-01 (화) | 디파이 : 탈중앙화 거래소 | [2532](https://xangle.io/research/detail/2532) |
 | 5 | 09-08 (화) | 토큰화 채권 · 토큰화 대체자산 | [2508](https://xangle.io/research/detail/2508) · [2517](https://xangle.io/research/detail/2517) |
 | 6 | 09-15 (화) | 자유 주제 코멘트 (글쓰기 과제) | — |
-| 7 | 09-22 (화) | 솔라나 RWA 주요 플레이어 | [2494](https://xangle.io/research/detail/2494) |
-| 8 | 09-29 (화) | 커스터디 / KMS | [2499](https://xangle.io/research/detail/2499) |
-| 9 | 10-06 (화) | 지갑 인프라 | [2520](https://xangle.io/research/detail/2520) |
-| 10 | 10-13 (화) | 컴플라이언스 | [2512](https://xangle.io/research/detail/2512) |
+| 7 | 09-29 (화) | 지갑 인프라 | [2520](https://xangle.io/research/detail/2520) |
+| 8 | 10-06 (화) | 솔라나 RWA 주요 플레이어 | [2494](https://xangle.io/research/detail/2494) |
+| 9 | 10-13 (화) | 커스터디 / KMS | [2499](https://xangle.io/research/detail/2499) |
+| 10 | 10-20 (화) | 컴플라이언스 | [2512](https://xangle.io/research/detail/2512) |
 
-08-25는 외부 세션으로 쉬었고, 09-15는 모이지 않고 각자 글 한 편으로 대체합니다.
+08-25는 외부 세션으로 쉬었고, 09-15는 모이지 않고 각자 글 한 편으로 대체합니다. 09-22는 휴회했습니다.
 
 홈 화면은 오늘 날짜를 기준으로 다음에 진행할 회차에 "다음 세션" 배지를 자동으로 붙입니다.
 
