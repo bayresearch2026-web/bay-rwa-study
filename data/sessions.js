@@ -749,6 +749,12 @@ window.STUDY = {
           part: '인수합병으로 재편된 시장 · Kresus · Privy · Dynamic · TEE·MPC 용어 풀이',
           url: 'materials/s7-4-1-4-2-user-wallet-market.html' },
 
+        { kind: 'PDF',
+          title: '4-3. 기업형 지갑 인프라',
+          who: '박의혁',
+          part: '슬라이드 16장 · 지갑은 서명 도구 · Anchorage · BitGo · Fireblocks의 키·승인 구조 · 실사 질문 여섯 가지',
+          url: 'materials/s7-4-3-enterprise-wallet-vendors.pdf' },
+
         { kind: '발표자료',
           title: '5-3 · 6. 기업형 지갑·수탁 인프라 비교',
           who: '이재환',
