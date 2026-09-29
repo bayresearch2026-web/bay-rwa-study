@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지갑 인프라 시장 지도</title>
+</head>
+<body>
+<style>
+  :root{
+    --bg:#f7f5f1;
+    --surface:#ffffff;
+    --ink:#2a2620;
+    --ink-soft:#6b6355;
+    --line:#ddd6c8;
+    --accent:#a8763e;
+    --accent-soft:#f0e4d3;
+    --k:#7a9e7e; --k-soft:#eef3ee;
+    --p:#5c7ea8; --p-soft:#e7edf5;
+    --d:#c98a5c; --d-soft:#f7ede2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1c1a16; --surface:#26231d; --ink:#f0ece2; --ink-soft:#a89f8d;
+      --line:#3a352c; --accent:#dba86a; --accent-soft:#3a2f20;
+      --k:#8fb894; --k-soft:#243228;
+      --p:#7fa0cc; --p-soft:#212a36;
+      --d:#d99f6f; --d-soft:#3a2c20;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1c1a16; --surface:#26231d; --ink:#f0ece2; --ink-soft:#a89f8d;
+    --line:#3a352c; --accent:#dba86a; --accent-soft:#3a2f20;
+    --k:#8fb894; --k-soft:#243228;
+    --p:#7fa0cc; --p-soft:#212a36;
+    --d:#d99f6f; --d-soft:#3a2c20;
+    color-scheme: dark;
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Pretendard","Noto Sans KR",-apple-system,BlinkMacSystemFont,sans-serif;
+    padding-inline:16px;
+    padding-block:36px;
+    line-height:1.6;
+  }
+  .wrap{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:36px;}
+
+  header h1{font-size:1.6rem;margin:0;text-wrap:balance;}
+  header .sub{color:var(--ink-soft);margin-top:8px;font-size:0.95rem;max-width:60ch;}
+  header .eyebrow{
+    font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin-bottom:6px;
+  }
+
+  section{display:flex;flex-direction:column;gap:16px;}
+  h2{font-size:1.15rem;margin:0;display:flex;align-items:baseline;gap:8px;}
+  h2 .num{color:var(--accent);font-variant-numeric:tabular-nums;font-size:0.95rem;}
+
+  .card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:14px;padding:20px;
+  }
+
+  /* 4-1: 시장 재편 타임라인 */
+  .timeline{display:flex;flex-direction:column;gap:0;}
+  .tl-item{
+    display:grid;grid-template-columns:88px 1fr;gap:14px;
+    padding-block:18px;border-top:1px solid var(--line);
+  }
+  @media (max-width:480px){
+    .tl-item{grid-template-columns:1fr;gap:4px;}
+  }
+  .tl-item:first-child{border-top:none;}
+  .tl-date{color:var(--ink-soft);font-size:0.82rem;font-variant-numeric:tabular-nums;padding-top:2px;}
+  .tl-body b{display:block;font-size:0.95rem;margin-bottom:2px;}
+  .tl-body span{color:var(--ink-soft);font-size:0.85rem;}
+  .tl-why{
+    margin-top:8px;background:var(--accent-soft);border-radius:8px;
+    padding:9px 11px;font-size:0.82rem;line-height:1.5;
+  }
+  .tl-why b{display:inline;font-size:0.82rem;color:var(--accent);}
+
+  .tl-profile{
+    margin-top:8px;font-size:0.82rem;color:var(--ink-soft);line-height:1.55;
+  }
+  .tl-acquired{
+    margin-top:8px;font-size:0.82rem;color:var(--ink-soft);line-height:1.55;
+  }
+  .tl-acquired b{color:var(--ink);font-size:inherit;}
+  .tl-stat{
+    display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;
+  }
+  .tl-stat div{font-size:0.78rem;color:var(--ink-soft);}
+  .tl-stat b{
+    display:block;font-size:0.9rem;color:var(--ink);font-variant-numeric:tabular-nums;
+  }
+  .tl-stat small{display:block;font-size:0.72rem;color:var(--ink-soft);font-weight:400;}
+  .tl-est{font-size:0.72rem;color:var(--ink-soft);margin-top:4px;font-style:italic;}
+
+  .callout{
+    background:var(--accent-soft);border-radius:10px;padding:14px 16px;
+    font-size:0.88rem;line-height:1.55;
+  }
+  .callout b{display:block;margin-bottom:4px;}
+
+  /* 스펙트럼 */
+  .spectrum{
+    display:flex;align-items:center;gap:8px;
+    padding:8px 4px;
+  }
+  .spectrum .axis{flex:1;height:2px;background:var(--line);position:relative;}
+  .spectrum .lbl{font-size:0.78rem;color:var(--ink-soft);white-space:nowrap;}
+
+  .vendor-row{
+    display:grid;grid-template-columns:1fr;gap:14px;
+  }
+  @media (min-width:640px){
+    .vendor-row{grid-template-columns:repeat(3,1fr);}
+  }
+  .vendor{
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:18px;display:flex;flex-direction:column;gap:10px;
+  }
+  .vendor .tag{
+    align-self:flex-start;font-size:0.72rem;font-weight:600;letter-spacing:0.03em;
+    padding:3px 9px;border-radius:99px;
+  }
+  .vendor.kresus .tag{background:var(--k-soft);color:var(--k);}
+  .vendor.privy .tag{background:var(--p-soft);color:var(--p);}
+  .vendor.dynamic .tag{background:var(--d-soft);color:var(--d);}
+  .vendor h3{margin:0;font-size:1.05rem;}
+  .vendor .desc{font-size:0.85rem;color:var(--ink-soft);}
+  .vendor ul{margin:0;padding-left:18px;font-size:0.85rem;display:flex;flex-direction:column;gap:5px;}
+  .vendor .foot{
+    margin-top:auto;padding-top:10px;border-top:1px solid var(--line);
+    font-size:0.78rem;color:var(--ink-soft);
+  }
+
+  table{width:100%;border-collapse:collapse;font-size:0.85rem;}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{color:var(--ink-soft);font-weight:600;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.03em;}
+  .tbl-wrap{overflow-x:auto;}
+  .tbl-wrap table{min-width:560px;}
+
+  footer{color:var(--ink-soft);font-size:0.8rem;padding-top:8px;border-top:1px solid var(--line);}
+</style>
+
+<a href="../session.html?s=7" style="display:block;background:#fff;border-bottom:1px solid #dce6ef;padding:13px 24px;font-size:14px;font-weight:700;color:#17619c;text-decoration:none;font-family:Pretendard,system-ui,sans-serif">&larr; BAY RWA 스터디 · 7회차 진행안으로</a><div class="wrap">
+  <header>
+    <div class="eyebrow">Xangle RWA Series 요약</div>
+    <h1>지갑 인프라 시장 지도</h1>
+    <div class="sub">RWA 서비스가 고객에게 지갑을 제공하기 위해 쓰는 세 인프라 — Kresus, Privy, Dynamic — 을 시장 재편 흐름과 함께 정리했다.</div>
+  </header>
+
+  <section>
+    <h2><span class="num">4-1</span>지갑 인프라 시장의 구성</h2>
+
+    <div class="callout">
+      <b>역할에 따라 나뉘는 시장</b>
+      사용자 지갑 인프라는 고객이 서비스에 들어오는 "문"을 만들고, 기업형 지갑 인프라는 회사가 가진 자산을 안전하게 지키고 통제하는 "금고"를 만든다. 이 페이지는 그중 고객용 문, 즉 사용자 지갑 인프라만 다룬다.
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 4px;font-size:0.95rem;">최근 2년, 인수합병으로 재편된 시장</h3>
+      <p style="margin:0 0 12px;color:var(--ink-soft);font-size:0.85rem;">독립 스타트업이던 임베디드 지갑 벤더 상당수가 1년 내 결제·인프라 대기업 산하로 편입됐다.</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">2025.06.02</div>
+          <div class="tl-body">
+            <b>Consensys → Web3Auth 인수</b><span>MetaMask 산하로 편입</span>
+            <div class="tl-acquired"><b>인수한 회사(Consensys):</b> 2014년 이더리움 공동창업자 조셉 루빈이 세운 회사. 크립토 지갑 <b style="display:inline;font-size:inherit;color:var(--ink);">메타마스크(MetaMask)</b>를 만든 곳으로, 월간 사용자 3천만 명 이상.</div>
+            <div class="tl-stat">
+              <div>매출(2022 공개 기준)<b>약 2.5억 달러<small>(약 3,500억 원)</small></b></div>
+              <div>누적 투자유치<b>약 7.15억 달러<small>(약 1조 원)</small></b></div>
+            </div>
+            <div class="tl-acquired"><b>인수당한 회사(Web3Auth):</b> 시드 문구 없이 소셜 로그인·기기 인증만으로 지갑을 쓰게 해주는 <b style="display:inline;font-size:inherit;color:var(--ink);">임베디드 지갑</b> 인증 전문 회사. 약 5천만 명 사용자, 8,200개 이상 앱에서 사용 중.</div>
+            <div class="tl-why"><b>왜:</b> 로그인·키관리 같은 기반 작업을 흡수해서, 메타마스크 팀이 비트코인·솔라나 같은 새 체인 지원에 더 집중할 수 있게 하려는 목적</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2025.06.11</div>
+          <div class="tl-body">
+            <b>Stripe → Privy 인수</b><span>Stripe 산하, 독립 제품으로 운영</span>
+            <div class="tl-acquired"><b>인수한 회사(Stripe):</b> 전 세계 최대급 온라인 결제 처리 회사. 아마존, 쇼피파이 등 수많은 온라인 쇼핑몰이 이 회사 결제 시스템을 사용.</div>
+            <div class="tl-stat">
+              <div>매출 추정치(2025)<b>약 194억 달러<small>(약 27조 원)</small></b></div>
+              <div>기업가치(2026)<b>1,590억 달러<small>(약 223조 원)</small></b></div>
+            </div>
+            <div class="tl-est">* 매출은 비상장사라 공식 공개 수치가 아닌 리서치업체(GetLatka) 추정치</div>
+            <div class="tl-acquired"><b>인수당한 회사(Privy):</b> 지갑 생성·로그인 기능을 부품(SDK)처럼 제공하는 임베디드 지갑 회사. 오픈씨, 코인베이스벤처스 등이 이미 써서 7,500만 개 이상의 지갑을 지원.</div>
+            <div class="tl-why"><b>왜:</b> 앞서 인수한 스테이블코인 회사 Bridge와 이어붙여, 카드 결제뿐 아니라 스테이블코인 결제까지 아우르는 종합 결제 인프라를 완성하려는 전략</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2025.10.23</div>
+          <div class="tl-body">
+            <b>Fireblocks → Dynamic 인수</b><span>커스터디 벤더가 소비자 지갑까지 확장</span>
+            <div class="tl-acquired"><b>인수한 회사(Fireblocks):</b> 기관(회사)들이 암호화폐·디지털자산을 안전하게 보관·이체하도록 돕는 인프라 회사.</div>
+            <div class="tl-stat">
+              <div>연환산매출(2023)<b>약 1.14억 달러<small>(약 1,600억 원)</small></b></div>
+              <div>기업가치(2025)<b>80억 달러<small>(약 11조 원)</small></b></div>
+            </div>
+            <div class="tl-est">* 매출은 비상장사라 공식 공개 수치가 아닌 리서치업체(GetLatka) 추정치, 공식 확인된 최신 수치는 2022년 1억 달러(ARR) 돌파 발표</div>
+            <div class="tl-acquired"><b>인수당한 회사(Dynamic):</b> 외부지갑 연결과 새 지갑 생성을 한 SDK로 묶어 제공하는 회사. 실물자산 서비스 Ondo Finance(OUSG)가 실제 도입.</div>
+            <div class="tl-why"><b>왜:</b> "기관 자산 보관"만 하던 회사가 "일반 고객용 지갑"까지 아울러, Fireblocks 표현대로 "커스터디에서 소비자까지 아우르는 스택"이 되려는 목적</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <b>임베디드 지갑이란</b>
+      "내장된 지갑"이라는 뜻으로, 시드 문구를 직접 백업하는 대신 소셜 로그인이나 이메일·문자 인증만으로 뒤에서 지갑이 자동으로 만들어지고 관리되는 방식이다. Web3Auth, Privy, Dynamic 모두 이 임베디드 지갑을 만들어주는 인프라 회사였다.
+    </div>
+
+    <div class="callout">
+      <b>왜 중요한가</b>
+      서비스가 종료되지 않아도 제품 로드맵은 모회사 전략을 따라간다. 지갑 인프라를 도입할 때는 지금 이 벤더가 무엇을 잘하는지뿐 아니라, 소유 구조와 이후 이전 가능성까지 함께 봐야 한다.
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 10px;font-size:0.95rem;">양쪽 경계도 흐려지고 있다</h3>
+      <p style="margin:0 0 10px;font-size:0.88rem;">
+        인수합병뿐 아니라, "고객용 지갑"과 "기관용 금고"라는 두 영역 자체의 경계도 서로 넘나들고 있다.
+      </p>
+      <ul style="margin:0;padding-left:18px;font-size:0.88rem;display:flex;flex-direction:column;gap:8px;">
+        <li><b>기관 수탁 → 고객 지갑으로 확장</b>: Fireblocks는 Dynamic 인수를 두고 "커스터디에서 소비자까지 아우르는 스택"이라 설명했고, Anchorage Digital도 수탁 서비스와 별도로 셀프 커스터디 지갑 <b style="display:inline;font-size:inherit;">Porto</b>를 운영한다.</li>
+        <li><b>고객 지갑 → 기관 인프라로 확장</b>: 반대로 고객 지갑을 제공하던 벤더가 기관용 인프라 쪽으로 넓혀가는 흐름도 있다.</li>
+      </ul>
+      <div class="tl-why" style="margin-top:12px;">
+        <b>다만 주의:</b> 한 벤더가 두 영역을 모두 제공한다고 해서, 고객자산과 기업자산의 통제 구조까지 하나로 합쳐지는 것은 아니다. 겉으로 한 브랜드처럼 보여도, 내부적으로는 여전히 구분해서 봐야 한다.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">4-2</span>사용자 지갑 인프라 — 세 가지 제공 방식</h2>
+
+    <div class="card">
+      <div class="spectrum">
+        <span class="lbl">완제품 그대로<br>(Kresus)</span>
+        <div class="axis"></div>
+        <span class="lbl">연결+생성 통합<br>(Dynamic)</span>
+        <div class="axis"></div>
+        <span class="lbl">직접 조립<br>(Privy)</span>
+      </div>
+      <p style="margin:8px 0 0;font-size:0.83rem;color:var(--ink-soft);">
+        세 벤더는 점유율이 아니라 "기업이 얼마나 직접 만들어야 하는가"라는 축 위에서 서로 다른 지점을 차지한다.
+      </p>
+    </div>
+
+    <div class="vendor-row">
+      <div class="vendor kresus">
+        <span class="tag">화이트라벨</span>
+        <h3>Kresus</h3>
+        <div class="desc">완성된 지갑을 기업 브랜드로 그대로 배포</div>
+        <ul>
+          <li>임베디드·웹 포털·독립 앱 형태 모두 지원</li>
+          <li>사용자 통제형·사업자 통제형 혼합 구성 가능</li>
+          <li>RWA 토큰화 플랫폼 Kite를 함께 제공</li>
+          <li>한화투자증권과 디지털자산 인프라 MOU 체결(2025.12)</li>
+        </ul>
+        <div class="foot">
+          <b style="display:block;color:var(--ink);font-size:0.78rem;margin-bottom:3px;">MOU 상세</b>
+          아부다비 파이낸스 위크 2025에서 체결. 협약 범위는 ① 디지털 지갑·토큰화 ② 블록체인 기술 개발 ③ 인적 교류 3가지. 다만 아직 구체적 결과물이 공개된 단계는 아님 — 협업 방향에 합의한 초기 단계
+        </div>
+      </div>
+
+      <div class="vendor privy">
+        <span class="tag">SDK / API</span>
+        <h3>Privy</h3>
+        <div class="desc">지갑 기능을 부품 단위로 제공, 화면은 기업이 설계</div>
+        <ul>
+          <li>TEE + 키 분할 구조, 정책 엔진으로 세부 제한 설정</li>
+          <li>SOC 2 Type II 매년 갱신, 외부 점검 분기 단위 공개</li>
+          <li>EVM·Solana 중심으로 기능이 두터움</li>
+          <li>가스비 대납 기본 지원</li>
+        </ul>
+        <div class="foot">투자자 적격성·명의개서는 별도 시스템 연결 필요</div>
+      </div>
+
+      <div class="vendor dynamic">
+        <span class="tag">통합 SDK</span>
+        <h3>Dynamic</h3>
+        <div class="desc">외부지갑 연결 + 임베디드 지갑을 한 SDK로 통합</div>
+        <ul>
+          <li>이메일·SMS·패스키 온보딩, 소셜 로그인 지원</li>
+          <li>TSS-MPC 방식, 사용자가 지갑을 외부로 이전 가능</li>
+          <li>SOC 2 Type II, 공개 버그바운티 운영</li>
+          <li>Ondo Finance(OUSG)가 실제 도입한 사례</li>
+        </ul>
+        <div class="foot">
+          <b style="display:block;color:var(--ink);font-size:0.78rem;margin-bottom:3px;">Ondo Finance 도입 방식</b>
+          투자자가 OUSG(미국 국채 토큰화 상품)를 사려면 자기 지갑을 연결해야 하는데, 이 "지갑 연결" 기능 자체를 직접 만들지 않고 Dynamic SDK를 붙여서 해결. 수십 개 지갑과의 연결 규격을 하나하나 개발하는 대신 인프라로 아웃소싱한 사례
+        </div>
+        <div class="foot">신원 확인·AML 심사는 직접 수행하지 않음(명시)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 12px;font-size:0.95rem;">용어 풀이</h3>
+      <ul style="margin:0;padding-left:18px;font-size:0.88rem;display:flex;flex-direction:column;gap:10px;">
+        <li><b>TEE(신뢰 실행 환경)</b> — 컴퓨터 칩(CPU) 안에 만들어진, 다른 프로그램이 절대 들여다볼 수 없는 "밀실" 같은 공간. 개인키 같은 민감한 정보를 이 밀실 안에서만 계산·처리하기 때문에, 설령 서버가 해킹당해도 그 안에서 돌아가는 내용은 외부에서 훔쳐볼 수 없다.</li>
+        <li><b>키 분할(Key Splitting)</b> — 지갑의 열쇠(개인키) 하나를 통째로 보관하지 않고, 여러 조각으로 쪼개서 서로 다른 곳(사용자 기기, 서버 등)에 나눠 보관하는 방식. 조각 하나만 유출돼서는 자산을 움직일 수 없고, 정해진 개수 이상의 조각이 모여야만 거래가 승인된다. 그래서 "TEE + 키 분할"은 "믿을 수 있는 밀실 안에서, 쪼개진 열쇠 조각들을 안전하게 조합해 거래를 승인하는 구조"라는 뜻이다.</li>
+        <li><b>SOC 2 (Type II)</b> — 미국공인회계사회가 만든 보안 심사 기준. 외부 감사인이 그 회사의 보안·데이터 관리 체계를 점검해서 인증해주는 제도다. "Type II"는 단순히 규정만 잘 만들어놨는지가 아니라, "일정 기간(보통 6개월~1년) 동안 실제로 그 규정대로 운영됐는지"까지 확인했다는 뜻이라 신뢰도가 더 높다. 다만 이 인증은 회사의 보안 운영 수준을 보여줄 뿐, 고객자산의 법적 분리나 파산 시 처리까지 보장해주진 않는다.</li>
+        <li><b>다자간 연산(MPC)</b> — 여러 참여자가 각자의 비밀 정보는 절대 공개하지 않은 채로, 협력해서 결과값만 계산해내는 암호학 기술. 지갑에서는 개인키 조각을 한곳에 모으지 않고도, 조각들이 서로 협력해 "서명값"이라는 결과만 만들어낼 수 있게 해준다.</li>
+        <li><b>임계값 서명(TSS)</b> — "정해진 개수 이상만 모이면 통과"라는 기준선(임계값) 방식의 서명. 예를 들어 "조각 5개 중 3개 이상 모이면 서명 완성"처럼, 전부가 아니라 일정 개수 이상만 있으면 되는 규칙이다. 은행 금고를 열 때 "5명 중 3명 이상 서명하면 열린다"는 규칙과 같은 원리다.</li>
+        <li><b>TSS-MPC</b> — 위 둘을 결합한 방식. TSS가 "몇 개 이상 모이면 통과"라는 규칙을 정하고, MPC가 "그 조각들을 한곳에 모으지 않고도 안전하게 계산해 결과를 만드는" 실제 방법을 제공한다. 그 결과 완전한 하나의 개인키가 애초에 한 번도 통째로 존재하지 않아, 조각 하나를 훔쳐도 기준 개수 미달이라 의미가 없다. Dynamic은 기본 2/2(사용자 기기+서버) 구성을 2/3으로 조정할 수 있다.</li>
+        <li><b>버그바운티(Bug Bounty)</b> — 회사가 "우리 시스템의 보안 취약점을 찾으면 현상금을 주겠다"고 공개적으로 내거는 프로그램. 전 세계 보안 연구자들이 합법적으로 시스템을 뚫어보고, 실제 취약점을 신고하면 보상받는다. SOC 2가 "체크리스트를 지켰는지" 확인하는 거라면, 버그바운티는 "실전에서 정말 안 뚫리는지" 검증하는 것이라 서로 보완적이다.</li>
+      </ul>
+    </div>
+
+    <div class="card tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>기준</th><th>Kresus</th><th>Privy</th><th>Dynamic</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>제공 형태</td><td>완제품 화이트라벨</td><td>조립형 SDK/API</td><td>통합 SDK</td>
+          </tr>
+          <tr>
+            <td>보안 인증 공개</td><td>제한적</td><td>SOC 2 Type II + 분기 점검</td><td>SOC 2 Type II + 버그바운티</td>
+          </tr>
+          <tr>
+            <td>강점 네트워크</td><td>기관망 + EVM(Kite)</td><td>EVM · Solana</td><td>멀티체인 + 다수 지갑 연결</td>
+          </tr>
+          <tr>
+            <td>RWA 전용 기능</td><td>Kite로 발행·관리·결제까지 확장</td><td>범용 인프라, 별도 연결 필요</td><td>범용 인프라, 별도 연결 필요</td>
+          </tr>
+          <tr>
+            <td>대표 사례</td><td>한화투자증권 MOU</td><td>-</td><td>Ondo Finance(OUSG)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <b>세 벤더의 공통 한계</b>
+      투자자 적격성 확인, 이전 제한, 명부 관리처럼 "RWA를 RWA로 만드는" 기능은 어느 벤더를 고르든 지갑 바깥에 남는다. 지갑 인프라는 자산에 접근하는 경로를 만들 뿐, 그 자산이 누구에게 갈 수 있는지까지 정해주지 않는다.
+    </div>
+  </section>
+
+  <footer>출처: Xangle, "[Xangle RWA Series] 지갑 인프라" (김진산, 2026.07.29)</footer>
+</div>
+
+</body>
+</html>

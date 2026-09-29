@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>5-3 기업형 지갑·수탁 인프라 비교 | 발표자료</title>
+<style>
+:root{--bg:#07111f;--panel:#0d1b2e;--panel2:#11253e;--text:#f4f7fb;--muted:#a7b6c9;--line:#27415f;--cyan:#6ee7ff;--violet:#a78bfa;--green:#6ee7b7;--yellow:#fcd34d;--pink:#fda4af}
+*{box-sizing:border-box} body{margin:0;background:#020817;color:var(--text);font-family:Inter,Pretendard,"Noto Sans KR",Arial,sans-serif;overflow:hidden}.deck{width:100vw;height:100vh;position:relative}
+.slide{position:absolute;inset:0;padding:50px 68px 46px;display:none;background:radial-gradient(circle at 90% 10%,rgba(110,231,255,.09),transparent 27%),radial-gradient(circle at 7% 92%,rgba(167,139,250,.10),transparent 24%),linear-gradient(145deg,#07111f,#0a1424 58%,#08111e)}.slide.active{display:flex;flex-direction:column}
+.kicker{font-size:15px;letter-spacing:.12em;color:var(--cyan);font-weight:850;text-transform:uppercase;margin-bottom:9px}h1{font-size:48px;line-height:1.1;margin:0 0 16px;letter-spacing:-.045em}h2{font-size:37px;line-height:1.18;margin:0 0 20px;letter-spacing:-.035em}h3{font-size:20px;margin:0 0 8px}p{font-size:19px;line-height:1.5;color:#dce7f5;margin:0}.subtitle{font-size:22px;color:var(--muted);max-width:930px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;flex:1}
+.card{background:linear-gradient(180deg,rgba(17,37,62,.96),rgba(11,27,46,.96));border:1px solid var(--line);border-radius:19px;padding:22px;box-shadow:0 18px 45px rgba(0,0,0,.2)}.soft{background:rgba(13,27,46,.72)}.mini{font-size:15px;color:var(--muted);line-height:1.45}.big{font-size:28px;font-weight:900;letter-spacing:-.03em}.cyan{color:var(--cyan)}.violet{color:var(--violet)}.green{color:var(--green)}.yellow{color:var(--yellow)}.pink{color:var(--pink)}
+.pill{display:inline-flex;padding:7px 10px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:#d4e3f4;background:#0a1729;margin:4px 4px 0 0}.tag{display:inline-block;padding:6px 9px;border-radius:8px;font-size:12px;font-weight:900;letter-spacing:.03em;background:var(--cyan);color:#07111f;margin-bottom:10px}.tag.v{background:var(--violet)}.tag.g{background:var(--green)}.tag.y{background:var(--yellow)}
+.list{display:grid;gap:9px;margin-top:12px}.item{display:flex;gap:11px;align-items:flex-start;font-size:17px;line-height:1.42;color:#dce7f5}.dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);margin-top:8px;flex:0 0 auto}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;flex:1}.heroVisual{display:grid;place-items:center;position:relative;min-height:390px}.ring{width:300px;height:300px;border:2px solid rgba(110,231,255,.45);border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,rgba(110,231,255,.14),rgba(110,231,255,.02) 64%);box-shadow:0 0 70px rgba(110,231,255,.1)}.ring span{text-align:center;font-size:30px;font-weight:900;line-height:1.2}.sat{position:absolute;padding:10px 14px;border-radius:13px;background:#11233a;border:1px solid #2b4a6c;font-size:14px;font-weight:800}.s1{top:52px;left:18px}.s2{top:110px;right:0}.s3{bottom:58px;left:42px}.s4{bottom:48px;right:28px}
+table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid var(--line);border-radius:17px;background:#0b192b}th,td{padding:13px 15px;border-bottom:1px solid #1f3854;border-right:1px solid #1f3854;font-size:15.5px;vertical-align:top;line-height:1.4}th{background:#10253e;color:white;text-align:left}tr:last-child td{border-bottom:none}th:last-child,td:last-child{border-right:none}
+.axis{display:flex;align-items:center;gap:10px;margin-top:14px}.axis .line{height:10px;border-radius:999px;flex:1;background:linear-gradient(90deg,var(--yellow),#60a5fa,var(--violet))}.axis span{font-size:13px;color:var(--muted)}
+.case{display:flex;flex-direction:column;gap:10px}.case .logo{font-size:24px;font-weight:900}.case .flow{padding:13px;border:1px dashed #355675;border-radius:14px;background:#0b192b;font-size:15px;line-height:1.55}.case .result{margin-top:auto;padding:12px 14px;border-radius:13px;background:#0b192b;border:1px solid #284561;font-size:14.5px;line-height:1.45}.case a{color:var(--cyan);text-decoration:none}.case a:hover{text-decoration:underline}
+.callout{padding:16px 18px;border-radius:16px;border:1px solid #345674;background:rgba(10,26,45,.78);font-size:18px;line-height:1.45;color:#e5eef8}.quote{font-size:27px;line-height:1.4;font-weight:850;letter-spacing:-.025em;color:#fff}.metric{font-size:31px;font-weight:900;letter-spacing:-.03em}.check{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;padding:15px;border-radius:14px;background:#0c1b2e;border:1px solid #28435f}.num{width:34px;height:34px;border-radius:10px;background:#12314d;color:var(--cyan);display:grid;place-items:center;font-weight:900}.check b{font-size:17px}.check span{display:block;font-size:14.5px;color:var(--muted);margin-top:3px;line-height:1.4}
+.footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;color:#768da7;font-size:11.5px}.source{max-width:85%}.progress{position:fixed;left:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--cyan),var(--violet));width:0;transition:.2s}.counter{position:fixed;left:24px;bottom:18px;font-size:13px;color:#8094ac;background:rgba(3,10,20,.75);padding:8px 11px;border-radius:10px;border:1px solid #1d3148;z-index:5}.controls{position:fixed;right:22px;bottom:17px;display:flex;gap:8px;z-index:5}button{border:1px solid #2d4662;background:#0c1b2e;color:#dce7f5;padding:9px 13px;border-radius:11px;cursor:pointer;font-weight:800}.note{position:absolute;left:68px;right:68px;bottom:44px;background:rgba(4,12,22,.98);border:1px solid #30506f;border-radius:15px;padding:17px 20px;color:#dce8f6;display:none;z-index:4;box-shadow:0 18px 60px rgba(0,0,0,.4);font-size:15px;line-height:1.5}.note.show{display:block}.note b{color:var(--cyan)}
+@media(max-width:900px){.slide{padding:34px 28px 42px}.grid2,.grid3,.grid4,.hero{grid-template-columns:1fr;overflow:auto}h1{font-size:38px}h2{font-size:31px}.heroVisual{min-height:290px}.ring{width:220px;height:220px}.note{left:28px;right:28px}.controls{right:8px}}
+@media print{body{overflow:visible}.slide{position:relative;display:flex!important;min-height:100vh;page-break-after:always}.controls,.counter,.progress,.note{display:none!important}}
+</style>
+</head>
+<body>
+<a href="../session.html?s=7" style="position:fixed;top:14px;right:22px;z-index:6;background:rgba(3,10,20,.75);border:1px solid #1d3148;border-radius:10px;padding:8px 12px;font-size:13px;font-weight:700;color:#dce7f5;text-decoration:none;font-family:Pretendard,system-ui,sans-serif">&larr; 7회차 진행안으로</a><div class="deck">
+
+<section class="slide active">
+  <div class="kicker">Xangle RWA Series · §5-3</div>
+  <div class="hero">
+    <div>
+      <h1>기업형 지갑·수탁 인프라 비교</h1>
+      <p class="subtitle">Anchorage Digital · BitGo · Fireblocks를 <b class="cyan">보안/규제, 네트워크/자산, RWA 기능, 제공 방식</b> 네 축으로 비교하고 실제 적용 사례까지 본다.</p>
+      <div style="margin-top:24px"><span class="pill">5-3 집중</span><span class="pill">Enterprise Wallet</span><span class="pill">Qualified Custody</span><span class="pill">RWA Operations</span></div>
+    </div>
+    <div class="heroVisual">
+      <div class="ring"><span>기업의 선택은<br><span class="cyan">통제권의 위치</span></span></div>
+      <div class="sat s1">Anchorage</div><div class="sat s2">BitGo</div><div class="sat s3">Fireblocks</div><div class="sat s4">RWA</div>
+    </div>
+  </div>
+  <div class="footer"><span class="source">Source: Xangle, [RWA Series] 지갑 인프라, §5-3 (2026-07-29)</span><span>1 / 8</span></div>
+  <div class="note"><b>발표자 노트</b> — 앞에서 기업형 지갑 분류는 이미 설명됐다고 보고 바로 5-3 비교로 들어갑니다. 오늘 핵심은 세 회사 중 누가 더 좋은지가 아니라, 기업이 통제권과 책임을 어디에 둘지에 따라 선택지가 달라진다는 점입니다.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">01 · 5-3 핵심 비교</div>
+  <h2>같은 ‘기업형 지갑’처럼 보여도 <span class="cyan">맡는 구간이 다르다</span></h2>
+  <table>
+    <thead><tr><th>비교 축</th><th>Anchorage Digital</th><th>BitGo</th><th>Fireblocks</th></tr></thead>
+    <tbody>
+      <tr><td><b>보안 / 규제</b></td><td>규제 수탁기관 중심</td><td>규제 수탁 + 기술 법인 분리</td><td>기술 플랫폼 + 별도 Trust Company</td></tr>
+      <tr><td><b>네트워크 / 자산</b></td><td>자산별 심사·지원</td><td>자산별 심사·지원, 폭넓은 커버리지</td><td>체인 중심 접근, 다수 퍼블릭 체인 지원</td></tr>
+      <tr><td><b>토큰 / RWA 기능</b></td><td>보관·결제</td><td>수탁 + RWA 체인 + 명부 영역 확장</td><td>발행·소각·화이트리스트·권한 정책</td></tr>
+      <tr><td><b>제공 방식</b></td><td>수탁 계약</td><td>수탁 / 2-of-3 / SaaS 병행</td><td>관리형 플랫폼·API·정책 엔진</td></tr>
+    </tbody>
+  </table>
+  <div class="callout" style="margin-top:16px"><b>읽는 법:</b> 기능 개수가 아니라 <b class="cyan">누가 자산을 법적으로 보관하고, 누가 최종 서명·관리자 권한을 통제하는가</b>를 봐야 한다.</div>
+  <div class="footer"><span class="source">Source: Xangle §5-3, lines 277–287</span><span>2 / 8</span></div>
+  <div class="note"><b>발표자 노트</b> — 5-3은 이 네 축으로 읽으면 됩니다. Anchorage는 외부 수탁, BitGo는 수탁과 직접 통제를 같이 제공하는 중간 지점, Fireblocks는 기업 내부 통제와 자동화를 플랫폼으로 구현하는 쪽에 가깝습니다.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">02 · 보안 / 규제</div>
+  <h2>가장 먼저 볼 것은 브랜드가 아니라 <span class="yellow">‘어느 법인과 계약하는가’</span></h2>
+  <div class="grid3">
+    <div class="card"><div class="tag y">Anchorage</div><div class="big yellow">규제 수탁</div><div class="list"><div class="item"><span class="dot"></span><span>OCC 국법은행</span></div><div class="item"><span class="dot"></span><span>MAS 라이선스, NY BitLicense</span></div><div class="item"><span class="dot"></span><span>수탁 계약 안에서 자산 보관·승인</span></div></div></div>
+    <div class="card"><div class="tag v">BitGo</div><div class="big violet">법인 분리</div><div class="list"><div class="item"><span class="dot"></span><span>규제 수탁 법인 존재</span></div><div class="item"><span class="dot"></span><span>기술·소프트웨어 법인은 별도</span></div><div class="item"><span class="dot"></span><span>수탁형과 자체통제형 병행</span></div></div></div>
+    <div class="card"><div class="tag g">Fireblocks</div><div class="big green">Platform + Trust</div><div class="list"><div class="item"><span class="dot"></span><span>본체는 기술 플랫폼</span></div><div class="item"><span class="dot"></span><span>Fireblocks Trust Company는 별도 수탁기관</span></div><div class="item"><span class="dot"></span><span>제품명이 아니라 계약 구조 확인 필요</span></div></div></div>
+  </div>
+  <div class="callout" style="margin-top:16px"><b>핵심 질문:</b> “Fireblocks를 쓴다”가 아니라 <b>Platform 계약인지, Trust 수탁계약인지</b>를 확인해야 자산의 법적 취급과 사고 책임을 알 수 있다.</div>
+  <div class="footer"><span class="source">Source: Xangle §5-1(보안/규제), §5-3</span><span>3 / 8</span></div>
+  <div class="note"><b>발표자 노트</b> — 이 슬라이드가 5-3의 중요한 인사이트입니다. 같은 브랜드라도 기술 제공과 법적 수탁은 다른 층위입니다. 실제 도입에서는 계약 상대 법인과 자산 통제 구조를 먼저 확인해야 합니다.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">03 · 네트워크 / 자산 · 제공 방식</div>
+  <h2>‘지원 숫자’는 같은 단위가 아니다</h2>
+  <div class="grid2">
+    <div class="card">
+      <div class="tag y">Anchorage + BitGo</div>
+      <div class="big yellow">Asset-first</div>
+      <p style="margin-top:8px">수탁기관은 보관할 <b>자산을 심사</b>해 지원 목록에 올린다.</p>
+      <div class="list"><div class="item"><span class="dot"></span><span>특정 RWA 토큰이 실제 지원 목록에 있는지가 중요</span></div><div class="item"><span class="dot"></span><span>BitGo: 2026 Q1 자사 집계 기준 시총 상위 250개 중 186개 지원</span></div><div class="item"><span class="dot"></span><span>지원 범위는 수탁계약·법인에 따라 확인</span></div></div>
+    </div>
+    <div class="card">
+      <div class="tag g">Fireblocks</div>
+      <div class="big green">Chain-first</div>
+      <p style="margin-top:8px">기술 플랫폼은 해당 <b>체인과 컨트랙트 호출</b>을 지원하는지가 중요하다.</p>
+      <div class="list"><div class="item"><span class="dot"></span><span>2026년 2월 기준 퍼블릭 블록체인 150개 지원</span></div><div class="item"><span class="dot"></span><span>RWA가 올라간 체인을 지원하면 운영 범위가 넓어짐</span></div><div class="item"><span class="dot"></span><span>정책·Treasury가 플랫폼에 깊게 결합될 수 있음</span></div></div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:16px"><b>따라서:</b> “몇 개 지원하나?”보다 <b class="cyan">“내가 발행·보관하려는 RWA 토큰과 체인을 실제로 어떤 기능 수준까지 지원하나?”</b>가 더 중요하다.</div>
+  <div class="footer"><span class="source">Source: Xangle §5-1(지원 네트워크/자산), §5-3; BitGo asset coverage (2026-04-14)</span><span>4 / 8</span></div>
+  <div class="note"><b>발표자 노트</b> — BitGo의 186개와 Fireblocks의 150개를 단순 비교하면 안 됩니다. 앞은 자산 커버리지, 뒤는 체인 커버리지라 단위가 다릅니다. RWA 사업자는 자산 지원 여부와 컨트랙트 실행 범위를 실제 사용 시나리오로 확인해야 합니다.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">04 · RWA 기능</div>
+  <h2>세 회사의 차이는 <span class="pink">RWA 생애주기에서 맡는 위치</span>로 보면 선명하다</h2>
+  <div class="grid3">
+    <div class="card"><div class="tag y">Anchorage</div><div class="big yellow">Hold</div><p style="margin-top:8px">토큰화 자산을 규제된 환경에서 <b>보관·결제</b>하는 쪽.</p><div class="list"><div class="item"><span class="dot"></span><span>기관 수탁</span></div><div class="item"><span class="dot"></span><span>토큰화 증권·스테이블코인 보관</span></div></div></div>
+    <div class="card"><div class="tag v">BitGo</div><div class="big violet">Custody + Registry</div><p style="margin-top:8px">수탁에 더해 <b>규제 자산 체인·명의개서 영역</b>까지 확장.</p><div class="list"><div class="item"><span class="dot"></span><span>Polymesh 커스터디 통합</span></div><div class="item"><span class="dot"></span><span>Brassica 인수로 transfer agent 기능 확장</span></div></div></div>
+    <div class="card"><div class="tag g">Fireblocks</div><div class="big green">Operate</div><p style="margin-top:8px">기업이 보유한 <b>발행·소각·관리자 권한</b>을 정책으로 통제.</p><div class="list"><div class="item"><span class="dot"></span><span>Mint / Burn</span></div><div class="item"><span class="dot"></span><span>Whitelist 무결성</span></div><div class="item"><span class="dot"></span><span>권한 정책을 하드웨어 수준에서 강제</span></div></div></div>
+  </div>
+  <div class="callout" style="margin-top:16px"><b>5-3의 핵심:</b> 관리자 권한 통제에 직접 대응하는 사례는 Fireblocks가 가장 명확하고, 다른 구조에서는 이 권한 설계를 기업이 별도로 가져가야 한다.</div>
+  <div class="footer"><span class="source">Source: Xangle §5-3, lines 283–285</span><span>5 / 8</span></div>
+  <div class="note"><b>발표자 노트</b> — RWA에서는 단순 송금보다 Mint, Burn, Freeze, Whitelist 같은 관리자 권한이 중요합니다. 세 벤더를 이 관점에서 보면 Anchorage는 보관, BitGo는 보관과 명부 인프라 확장, Fireblocks는 운영 권한 통제가 핵심입니다.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">05 · 실제 적용 사례</div>
+  <h2>비교표를 실제 사례에 대입하면 역할 차이가 바로 보인다</h2>
+  <div class="grid3">
+    <div class="card case">
+      <div><div class="tag y">Anchorage</div><div class="logo">Etherfuse CETES</div><p class="mini">멕시코 국채 토큰 · Stellar</p></div>
+      <div class="flow"><b>Etherfuse</b>가 국채를 토큰화<br>↓<br><b>Stellar</b>가 온체인 이동 인프라 제공<br>↓<br><b>Anchorage</b>가 기관 수탁 담당</div>
+      <div class="result"><b class="yellow">보여주는 것</b><br>RWA 발행자와 체인이 따로 존재해도, 기관 투자자는 규제 수탁기관을 통해 토큰을 보유할 수 있다.</div>
+      <div class="mini"><a href="https://www.anchorage.com/insights/anchorage-digital-supports-custody-for-tokenized-cetes-etherfuses-tokenized-mexican-government-debt-on-stellar" target="_blank">Anchorage Digital 사례</a></div>
+    </div>
+    <div class="card case">
+      <div><div class="tag v">BitGo</div><div class="logo">DTCC Tokenization</div><p class="mini">토큰화 미국 국채·주식 · 2026</p></div>
+      <div class="flow"><b>DTCC</b>가 DTC 보유 증권을 토큰화<br>↓<br><b>BitGo Bank & Trust</b>가 적격 수탁<br>↓<br>토큰화 국채·주식 담보의 <b>이동·결제</b> 지원</div>
+      <div class="result"><b class="violet">보여주는 것</b><br>토큰화는 발행만의 문제가 아니라 기존 기관시장의 수탁·담보·결제 워크플로와 연결돼야 한다.</div>
+      <div class="mini"><a href="https://bitgo.com/resources/blog/inside-the-infrastructure-powering-dtccs-tokenized-securities-milestone/" target="_blank">BitGo 사례</a></div>
+    </div>
+    <div class="card case">
+      <div><div class="tag g">Fireblocks</div><div class="logo">Banking Circle EURI</div><p class="mini">MiCA 규제 유로 스테이블코인</p></div>
+      <div class="flow"><b>Banking Circle</b>이 EURI 구조·스마트컨트랙트 설계<br>↓<br><b>Fireblocks Tokenization Engine</b><br>↓<br>24/7 <b>Mint / Burn</b> + MPC 기반 권한 통제</div>
+      <div class="result"><b class="green">보여주는 것</b><br>Fireblocks는 보관만이 아니라 발행·소각 같은 운영 권한을 기업의 정책 엔진과 연결한다.</div>
+      <div class="mini"><a href="https://www.fireblocks.com/customers/banking-circle-2" target="_blank">Fireblocks 사례</a></div>
+    </div>
+  </div>
+  <div class="footer"><span class="source">Sources: Anchorage Digital · BitGo · Fireblocks official case materials</span><span>6 / 8</span></div>
+  <div class="note"><b>발표자 노트</b> — 세 사례를 비교하면 역할이 선명합니다. Anchorage는 토큰화된 국채를 기관이 안전하게 보유하는 수탁, BitGo는 기존 자본시장 인프라와 토큰화 증권의 이동·결제 연결, Fireblocks는 발행자 내부의 Mint/Burn 권한 운영에 가깝습니다.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">06 · 실사 포인트</div>
+  <h2>도입 전에 확인할 것은 <span class="cyan">벤더 순위</span>가 아니라 이 질문들이다</h2>
+  <div class="grid2">
+    <div style="display:grid;gap:12px">
+      <div class="check"><div class="num">1</div><div><b>자산을 누가 법적으로 보관하는가?</b><span>기술 플랫폼인지, 적격 수탁기관인지 계약 법인을 확인한다.</span></div></div>
+      <div class="check"><div class="num">2</div><div><b>우리 RWA 토큰·체인을 실제 지원하는가?</b><span>자산 목록과 체인 숫자를 같은 기준으로 보면 안 된다.</span></div></div>
+      <div class="check"><div class="num">3</div><div><b>관리자 권한을 따로 통제할 수 있는가?</b><span>Mint, Burn, Freeze, Whitelist, Upgrade는 일반 송금보다 강한 권한이다.</span></div></div>
+    </div>
+    <div style="display:grid;gap:12px">
+      <div class="check"><div class="num">4</div><div><b>자동화가 필요한가?</b><span>대량 지급·정산·컨트랙트 호출이 많다면 정책 엔진과 API가 중요하다.</span></div></div>
+      <div class="check"><div class="num">5</div><div><b>장애·계약 종료 때 독립적으로 자산에 접근할 수 있는가?</b><span>키 복구, 지갑 이전, 승인 기록 이전 조건을 확인한다.</span></div></div>
+      <div class="check"><div class="num">6</div><div><b>지갑 밖의 RWA 요건은 누가 맡는가?</b><span>KYC, 투자자 적격성, 이전 제한, 명의개서는 별도 시스템일 수 있다.</span></div></div>
+    </div>
+  </div>
+  <div class="footer"><span class="source">Derived from Xangle §3-2, §5-1, §5-3</span><span>7 / 8</span></div>
+  <div class="note"><b>발표자 노트</b> — 이 슬라이드는 발표 결론으로 넘어가기 위한 체크리스트입니다. 세 벤더를 단순 기능표로 비교하기보다, 우리 회사가 어떤 자산을 다루고 어느 권한까지 직접 가져갈지부터 정해야 한다는 흐름으로 연결하면 됩니다.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">07 · 결론</div>
+  <h2>기업형 지갑 선택의 본질은 <span class="cyan">‘통제권을 어디까지 가져갈 것인가’</span>다</h2>
+  <div class="grid3">
+    <div class="card"><div class="tag y">Anchorage</div><div class="big yellow">맡긴다</div><p style="margin-top:10px">규제 수탁기관에 자산 보관을 맡기고, 기업은 그 승인 체계 안에서 운영한다.</p></div>
+    <div class="card"><div class="tag v">BitGo</div><div class="big violet">나눈다</div><p style="margin-top:10px">규제 수탁과 자체 통제를 함께 배치해 자산별로 통제 구조를 나눌 수 있다.</p></div>
+    <div class="card"><div class="tag g">Fireblocks</div><div class="big green">직접 운영한다</div><p style="margin-top:10px">기업이 통제권을 유지하면서 정책과 관리자 권한을 자동화한다.</p></div>
+  </div>
+  <div class="callout" style="margin-top:18px"><div class="quote">“어떤 벤더가 더 좋은가?”보다<br><span class="cyan">“우리 회사가 무엇을 직접 통제해야 하는가?”</span>를 먼저 정해야 한다.</div></div>
+  <div class="axis"><span>외부수탁</span><div class="line"></div><span>직접통제</span></div>
+  <div class="footer"><span class="source">Conclusion based on Xangle §5-3 and §6</span><span>8 / 8</span></div>
+  <div class="note"><b>발표자 노트</b> — 마무리는 이렇게 하면 됩니다. 세 회사는 하나의 기능을 놓고 단순 경쟁하는 관계라기보다 기업이 통제권을 어디까지 가져갈지에 따라 선택지가 갈립니다. RWA에서는 자산 보관뿐 아니라 발행·소각·동결·명의개서 같은 권한까지 포함해 구조를 설계해야 합니다.</div>
+</section>
+
+</div>
+<div class="counter" id="counter">1 / 8</div>
+<div class="controls"><button id="notes">발표자 노트 (N)</button><button id="prev">←</button><button id="next">→</button></div>
+<div class="progress" id="progress"></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];let idx=0,notesOn=false;
+function render(){slides.forEach((s,i)=>s.classList.toggle('active',i===idx));document.getElementById('counter').textContent=`${idx+1} / ${slides.length}`;document.getElementById('progress').style.width=`${((idx+1)/slides.length)*100}%`;document.querySelectorAll('.note').forEach(n=>n.classList.toggle('show',notesOn));}
+function next(){idx=Math.min(slides.length-1,idx+1);render()}function prev(){idx=Math.max(0,idx-1);render()}
+document.getElementById('next').onclick=next;document.getElementById('prev').onclick=prev;document.getElementById('notes').onclick=()=>{notesOn=!notesOn;render()};
+document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next()}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev()}if(e.key.toLowerCase()==='n'){notesOn=!notesOn;render()}if(e.key==='Home'){idx=0;render()}if(e.key==='End'){idx=slides.length-1;render()}});render();
+</script>
+</body>
+</html>

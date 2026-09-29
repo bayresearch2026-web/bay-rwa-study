@@ -729,7 +729,32 @@ window.STUDY = {
           ],
           focus: '기업형 지갑·수탁 인프라 비교 결과 / RWA 관점에서 지갑 인프라 선택 기준 정리' }
       ],
-      records: []
+      // 목차 순서로 정렬해 두면 발표 순서와 무관하게 찾기 쉽습니다.
+      records: [
+        { kind: '발표자료',
+          title: '1 · 2. RWA 지갑의 분류와 통제 구조',
+          who: '배예림',
+          part: '외부지갑 연결형 · 서비스 내 지갑(사용자·사업자 통제형) · 수탁 · 부록: Kresus · Privy · TSS-MPC vs Multisig',
+          url: 'materials/s7-1-2-wallet-types-control.html' },
+
+        { kind: '발표자료',
+          title: '3-1 · 3-2. 기업형 지갑 분류',
+          who: '이성재',
+          part: '고객자산 지갑(개별·통합) · 외부수탁형 vs 직접수탁형 · 두 방식을 함께 쓰는 구조',
+          url: 'materials/s7-3-enterprise-wallet-types.html' },
+
+        { kind: '발표자료',
+          title: '4-1 · 4-2. 지갑 인프라 시장 지도',
+          who: '장윤선',
+          part: '인수합병으로 재편된 시장 · Kresus · Privy · Dynamic · TEE·MPC 용어 풀이',
+          url: 'materials/s7-4-1-4-2-user-wallet-market.html' },
+
+        { kind: '발표자료',
+          title: '5-3 · 6. 기업형 지갑·수탁 인프라 비교',
+          who: '이재환',
+          part: '슬라이드 8장 · Anchorage · BitGo · Fireblocks · 실제 적용 사례 · 실사 포인트',
+          url: 'materials/s7-5-3-enterprise-custody-compare.html' }
+      ]
     },
 
     /* ===== 8회차 · 솔라나 RWA 주요 플레이어 =====================================*/
