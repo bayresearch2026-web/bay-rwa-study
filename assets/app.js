@@ -321,13 +321,13 @@
     '</table></div></div>';
   }
 
-  /** 주제 선정 현황 — 아직 안 정했으면 "미정" */
+  /** 주제 선정 현황 — 주제가 비어 있으면 "미정", note가 있으면 그 문구 */
   function topicTable(s) {
     if (!s.topics || !s.topics.length) return null;
 
     var rows = s.topics.map(function (t) {
       return '<tr><td><span class="who">' + t.who + '</span></td>' +
-        '<td>' + (t.topic ? '<b>' + t.topic + '</b>' : '<span class="undecided">미정</span>') + '</td></tr>';
+        '<td>' + (t.topic ? '<b>' + t.topic + '</b>' : '<span class="undecided">' + (t.note || '미정') + '</span>') + '</td></tr>';
     }).join('');
 
     return '<div class="card"><div class="tblwrap"><table>' +
