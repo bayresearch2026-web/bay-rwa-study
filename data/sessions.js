@@ -663,15 +663,35 @@ window.STUDY = {
       },
       // 주제 선정 현황 — 09-10 마감 뒤 채웁니다. topic이 비어 있으면 "미정"으로 표시됩니다.
       topics: [
-        { who: '장윤선', topic: '' },
+        { who: '장윤선', topic: 'AI 에이전트가 알아서 결제하는 인터넷, x402 프로토콜' },
         { who: '이재환', topic: '' },
         { who: '노제희', topic: '' },
-        { who: '박의혁', topic: '' },
-        { who: '이성재', topic: '' },
-        { who: '배예림', topic: '' }
+        { who: '박의혁', topic: '토큰화 국채 담보 DeFi 대출은 안전할까?' },
+        { who: '이성재', topic: '크립토카드' },
+        { who: '배예림', topic: '토큰화 국채의 진짜 경쟁이 시작됐다' }
       ],
-      // 제출된 글 — { kind: '노션', title: '글 제목', who: '이름', url: 'https://…' } 로 추가
-      records: []
+      // 제출된 글 — { kind: '미디엄', title: '글 제목', who: '이름', url: 'https://…' } 로 추가
+      records: [
+        { kind: '미디엄',
+          title: '크립토카드',
+          who: '이성재',
+          url: 'https://medium.com/yonseiblockchainlab/%ED%81%AC%EB%A6%BD%ED%86%A0%EC%B9%B4%EB%93%9C-22d09dc31dc2' },
+
+        { kind: '미디엄',
+          title: '토큰화 국채의 진짜 경쟁이 시작됐다',
+          who: '배예림',
+          url: 'https://medium.com/yonseiblockchainlab/%ED%86%A0%ED%81%B0%ED%99%94-%EA%B5%AD%EC%B1%84%EC%9D%98-%EC%A7%84%EC%A7%9C-%EA%B2%BD%EC%9F%81%EC%9D%B4-%EC%8B%9C%EC%9E%91%EB%90%90%EB%8B%A4-30f9a67769b5' },
+
+        { kind: '미디엄',
+          title: 'AI 에이전트가 알아서 결제하는 인터넷, x402 프로토콜',
+          who: '장윤선',
+          url: 'https://medium.com/yonseiblockchainlab/ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8%EA%B0%80-%EC%95%8C%EC%95%84%EC%84%9C-%EA%B2%B0%EC%A0%9C%ED%95%98%EB%8A%94-%EC%9D%B8%ED%84%B0%EB%84%B7-x402-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C-90ad3404f49e' },
+
+        { kind: '미디엄',
+          title: '토큰화 국채 담보 DeFi 대출은 안전할까?',
+          who: '박의혁',
+          url: 'https://medium.com/yonseiblockchainlab/%ED%86%A0%ED%81%B0%ED%99%94-%EA%B5%AD%EC%B1%84-%EB%8B%B4%EB%B3%B4-defi-%EB%8C%80%EC%B6%9C%EC%9D%80-%EC%95%88%EC%A0%84%ED%95%A0%EA%B9%8C-6c67e0db02fd' }
+      ]
     },
 
     /* ===== 7회차 · 지갑 인프라 ==============================================*/

@@ -79,9 +79,10 @@
     body  = UI.section('01', '과제 안내', '이번 회차는 모이지 않고 각자 글 한 편으로 대체합니다', UI.writingGuide(s));
     body += UI.section('02', '예시 주제', '운영자가 공부하면서 실제로 궁금했던 것들', UI.writingExamples(s));
     body += UI.section('03', '일정 · 제출', due ? UI.fmtDate(due.date).long + ' ' + (due.time || '') + '까지' : '', UI.writingSchedule(s));
-    body += UI.section('04', '주제 선정 현황', '주제 선정 마감 뒤에 채워집니다', UI.topicTable(s));
+    var picked = (s.topics || []).some(function (t) { return t.topic; });
+    body += UI.section('04', '주제 선정 현황', picked ? '작성자별 고른 주제' : '주제 선정 마감 뒤에 채워집니다', UI.topicTable(s));
     body += UI.section('05', '제출된 글',
-      (s.records && s.records.length) ? '노션 · 미디엄 링크' : '제출 마감 뒤 채워집니다',
+      (s.records && s.records.length) ? 'BAY 미디엄에 게재된 글' : '제출 마감 뒤 채워집니다',
       UI.recordList(s, '제출 마감이 지나면 각자 쓴 글의 링크가 이곳에 모입니다.'));
   } else if (tbd) {
     body = UI.section('01', '진행안', '아직 준비 전입니다',
